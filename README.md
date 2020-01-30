@@ -18,7 +18,7 @@ this is how it should look like (variant 1)
 
 (variant 2)
 
-![Screenshot](img/MMM-Teslalogger-target2.png)
+![Screenshot](img/MMM-TeslaLogger-target2.png)
 
 font awesome icons:
 <i class="fas fa-toggle-off"></i>
