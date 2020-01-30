@@ -16,6 +16,16 @@ this is how it should look like (variant 1)
 
 ![Screenshot](img/MMM-Teslalogger-target.png)
 
+font awesome icons:
+<i class="fas fa-toggle-off"></i>
+<i class="fas fa-battery-three-quarters"></i>
+<i class="fas fa-charging-station"></i>
+<i class="fas fa-unlock-alt"></i>
+<i class="fas fa-thermometer-half"></i>
+<i class="fas fa-suitcase"></i>
+<i class="fas fa-fan"></i>
+<i class="fas fa-car-battery"></i>
+<i class="fas fa-code-branch"></i>
 
 
 ## Installation
