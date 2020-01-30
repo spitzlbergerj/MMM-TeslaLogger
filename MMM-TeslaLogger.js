@@ -876,18 +876,32 @@ Module.register("MMM-TeslaLogger", {
    },
    
 
-  isValueTooOld: function(maxAgeSeconds, updatedTime) {
-    this.log(this.name + ': maxAgeSeconds = ', maxAgeSeconds);
-    this.log(this.name + ': updatedTime = ', updatedTime);
-    this.log(this.name + ': Date.now() = ', Date.now());
-    if (maxAgeSeconds) {
-      if (updatedTime + maxAgeSeconds * 1000 < Date.now()) {
-        return true;
+   isValueTooOld: function(maxAgeSeconds, updatedTime) {
+      this.log(this.name + ': maxAgeSeconds = ', maxAgeSeconds);
+      this.log(this.name + ': updatedTime = ', updatedTime);
+      this.log(this.name + ': Date.now() = ', Date.now());
+      if (maxAgeSeconds) {
+         if (updatedTime + maxAgeSeconds * 1000 < Date.now()) {
+            return true;
+         }
       }
-    }
-    return false;
+      return false;
   },
 
+	
+   formatDateTime: function(secs) {
+      var epoch = new Date(0);
+      epoch.setSeconds(parseInt(secs));
+      var date = epoch.toISOString();
+      date = date.replace('T', ' ');
+      return date.split('.')[0].split(' ')[0] + ' ' + epoch.toLocaleTimeString().split(' ')[0];
+   },
+
+   toDateTime: function(secs) {
+      var t = new Date(1970, 0, 1); // Epoch
+      t.setSeconds(secs);
+      return t;
+   }
 
 // ------------------------------------------------------------------------
 // the next three functions are not adapted to the 
