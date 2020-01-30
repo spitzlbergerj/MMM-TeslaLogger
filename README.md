@@ -16,6 +16,10 @@ this is how it should look like (variant 1)
 
 ![Screenshot](img/MMM-Teslalogger-target.png)
 
+(variant 2)
+
+![Screenshot](img/MMM-Teslalogger-target2.png)
+
 font awesome icons:
 <i class="fas fa-toggle-off"></i>
 <i class="fas fa-battery-three-quarters"></i>
