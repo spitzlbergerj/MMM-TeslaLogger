@@ -12,7 +12,7 @@ here is the present view
 ![Screenshot](img/screenshot-01.jpg)
 
 this is how it should look like (variant 1)
-![Screenshot](img/MMM-Teslalogger-target.jpg)
+![Screenshot](img/MMM-Teslalogger-target.png)
 
 
 
