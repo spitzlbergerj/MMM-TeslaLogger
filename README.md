@@ -9,9 +9,11 @@ This module is based on [MMM-MQTT](https://github.com/ottopaulsen/MMM-MQTT) and 
 ## Screenshot
 
 here is the present view
+
 ![Screenshot](img/screenshot-01.jpg)
 
 this is how it should look like (variant 1)
+
 ![Screenshot](img/MMM-Teslalogger-target.png)
 
 
