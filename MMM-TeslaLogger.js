@@ -3,10 +3,9 @@ Module.register("MMM-TeslaLogger", {
    // Default module config
    defaults: {
       logging: false,
-	  style: "lines",
+	  style: "lines",			// lines, groupedLines, image
 	  maxAgeSeconds: 36000,    // Reduce intensity if values are older than 10 hours
 	  localeStr: 'de-DE',
-
 	  
 	  // TeslaLogger posts MQTT with topic "Tesla"
       mqttTopics: [
@@ -41,6 +40,7 @@ Module.register("MMM-TeslaLogger", {
       displayBattery_heater: false,
       displayIs_preconditioning: false,
       displaySentry_mode: false,
+      displayLock: false,
 	  
       unitSpeed: "km/h",
       unitPower: "kW",
@@ -106,6 +106,7 @@ Module.register("MMM-TeslaLogger", {
       battery_heater: false,
       is_preconditioning: true,
       sentry_mode: false,
+	  lock: false,
    },
 
    log: function(...args) {
@@ -190,7 +191,6 @@ Module.register("MMM-TeslaLogger", {
             this.TeslaLoggerJSON.Sentry_mode = get(JSON.parse(value), "/sentry_mode");
 			
 			this.TeslaLoggerJSON.TimeOfStatus = payload.time;
-			this.TeslaLoggerJSON.TimeOfStatusStr = payload.timeStr;
 			
             this.updateDom();
          } 
@@ -218,6 +218,51 @@ Module.register("MMM-TeslaLogger", {
 	  table = document.createElement("table");
       table.className = "small";
 	  
+	  if (self.config.style === "lines") {
+		  table = self.getDomLines(table);
+	  }
+	  else if (self.config.style === "groupedLines") {
+		  table = self.getDomGroupedLines(table);
+	  }
+	  else {
+		  table = self.getDomImage(table);
+	  }
+	  
+      // time of MQTT Message
+      row = document.createElement("tr");
+	  
+      label = document.createElement("td");
+      label.innerHTML = self.translate("STATUS");
+      label.className = "align-left xsmall TeslaLogger-label";
+
+      value = document.createElement("td");
+      value.innerHTML = self.formatDateTime(self.TeslaLoggerJSON.timeOfStatus);
+      value.className = "align-right xsmall TeslaLogger-value ";
+	 
+      suffix = document.createElement("td");
+      suffix.innerHTML = "";
+      suffix.className = "align-left xsmall TeslaLogger-suffix";
+	 
+      row.appendChild(label);
+      row.appendChild(value);
+      row.appendChild(suffix);
+		 
+      table.appendChild(row);
+
+      wrapper.appendChild(table);
+      return wrapper;
+   },
+   
+
+   getDomLines: function(table) {
+      self = this;
+	  var row;
+	  var symbolCell;
+	  var symbol;
+	  var value;
+	  
+	  var tooOld = self.isValueTooOld(self.config.maxAgeSeconds, self.TeslaLoggerJSON.TimeOfStatus);
+
       if (self.config.displayState) {
          row = document.createElement("tr");
 		  
@@ -252,7 +297,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displaySpeed) {
          row = document.createElement("tr");
@@ -274,7 +319,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayPower) {
          row = document.createElement("tr");
@@ -296,7 +341,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayOdometer) {
          row = document.createElement("tr");
@@ -318,7 +363,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
  
       if (self.config.displayIdeal_battery_range_km) {
          row = document.createElement("tr");
@@ -340,7 +385,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayOutside_temp) {
          row = document.createElement("tr");
@@ -362,7 +407,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayBattery_level) {
          row = document.createElement("tr");
@@ -384,7 +429,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayCharger_voltage) {
          row = document.createElement("tr");
@@ -406,7 +451,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayCharger_phases) {
          row = document.createElement("tr");
@@ -428,7 +473,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayCharger_actual_current) {
          row = document.createElement("tr");
@@ -450,7 +495,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayCharge_energy_added) {
          row = document.createElement("tr");
@@ -472,7 +517,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayCharger_power) {
          row = document.createElement("tr");
@@ -494,7 +539,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayCar_version) {
          row = document.createElement("tr");
@@ -516,7 +561,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayTrip_start) {
          row = document.createElement("tr");
@@ -538,7 +583,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayTrip_max_speed) {
          row = document.createElement("tr");
@@ -560,7 +605,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayTrip_max_power) {
          row = document.createElement("tr");
@@ -582,7 +627,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayTrip_duration_sec) {
          row = document.createElement("tr");
@@ -604,7 +649,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayTrip_kwh) {
          row = document.createElement("tr");
@@ -626,7 +671,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayTrip_avg_kwh) {
          row = document.createElement("tr");
@@ -648,7 +693,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayTrip_distance) {
          row = document.createElement("tr");
@@ -670,7 +715,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayTs) {
          row = document.createElement("tr");
@@ -692,7 +737,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayLatitude) {
          row = document.createElement("tr");
@@ -714,7 +759,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayLongitude) {
          row = document.createElement("tr");
@@ -736,7 +781,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayCharge_limit_soc) {
          row = document.createElement("tr");
@@ -758,7 +803,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayInside_temperature) {
          row = document.createElement("tr");
@@ -780,7 +825,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayBattery_heater) {
          row = document.createElement("tr");
@@ -802,7 +847,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displayIs_preconditioning) {
          row = document.createElement("tr");
@@ -824,7 +869,7 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
+      }
 
       if (self.config.displaySentry_mode) {
          row = document.createElement("tr");
@@ -846,36 +891,359 @@ Module.register("MMM-TeslaLogger", {
 		 row.appendChild(suffix);
 		 
 		 table.appendChild(row);
-     }
-
- 
-
-	 // time of MQTT Message
-	 row = document.createElement("tr");
-	  
-	 label = document.createElement("td");
-	 label.innerHTML = self.translate("STATUS");
-	 label.className = "align-left xsmall TeslaLogger-label";
-
-	 value = document.createElement("td");
-	 value.innerHTML = self.TeslaLoggerJSON.timeOfStatusStr;
-	 value.className = "align-right xsmall TeslaLogger-value ";
+      }
 	 
-	 suffix = document.createElement("td");
-	 suffix.innerHTML = "";
-	 suffix.className = "align-left xsmall TeslaLogger-suffix";
-	 
-	 row.appendChild(label);
-	 row.appendChild(value);
-	 row.appendChild(suffix);
-		 
-	 table.appendChild(row);
-
-      wrapper.appendChild(table);
-      return wrapper;
+      return table;
    },
    
+   getDomGroupedLines: function(table) {
+      self = this;
+	  var row;
+	  var symbolCell;
+	  var symbol;
+	  var value;
+	  var content;
+	  var contentDiv;
+	  
+	  var tooOld = self.isValueTooOld(self.config.maxAgeSeconds, self.TeslaLoggerJSON.TimeOfStatus);
 
+      // --------------------------------------------------------
+	  // state and speed
+	  // --------------------------------------------------------
+		 
+      if (self.config.displayState) {
+         row = document.createElement("tr");
+		  
+		 symbolCell = document.createElement("td");
+         symbolCell.className = "align-left TeslaLogger-label";
+		 
+		 symbol = document.createElement("i");
+         symbol.className = "align-left fa fa-fw fa-toggle-off";
+		 
+		 symbolCell.appendChild(symbol);
+
+		 value = document.createElement("td");
+		 
+		 if (self.TeslaLoggerJSON.Charging) {
+            value.innerHTML = self.translate("CHARGING");
+		 }
+		 else if (self.TeslaLoggerJSON.Online) {
+            value.innerHTML = self.translate("ONLINE");
+		 }
+		 else if (self.TeslaLoggerJSON.Sleeping) {
+            value.innerHTML = self.translate("SLEEPING");
+		 }
+		 else if (self.TeslaLoggerJSON.Driving) {
+            content = self.translate("DRIVING")
+			if (self.config.displaySpeed) {
+				content = content + " " + self.translate("WITH") + " " + self.TeslaLoggerJSON.Speed + " " + self.config.unitSpeed;
+			}
+			value.innerHTML = content;
+		 }
+		 else {
+            value.innerHTML = self.translate("UNDEFINED");
+		 }
+         value.className = "align-left TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
+		
+		 row.appendChild(symbolCell);
+		 row.appendChild(value);
+		 
+		 table.appendChild(row);
+      }
+
+      // --------------------------------------------------------
+	  // battery level, ideal battery range km, max level
+	  // --------------------------------------------------------
+		 
+
+       if (self.config.displayBattery_level) {
+         row = document.createElement("tr");
+		  
+		 symbolCell = document.createElement("td");
+         symbolCell.className = "align-left TeslaLogger-label";
+		 
+		 symbol = document.createElement("i");
+         symbol.className = "align-left fa fa-fw fa-battery-three-quarters";
+		 
+		 symbolCell.appendChild(symbol);
+
+
+		 value = document.createElement("td");
+		 
+		 content = self.TeslaLoggerJSON.Battery_level + " " + self.config.unitBattery_level;
+		 
+		 if (self.config.displayIdeal_battery_range_km) {
+			 content = content + ", " + Math.round(self.TeslaLoggerJSON.Ideal_battery_range_km) + " " + self.config.unitIdeal_battery_range_km;
+		  }
+		 
+		 if (self.config.displayCharge_limit_soc) {
+			 content = content + ", " + self.translate("MAX") + " " + self.TeslaLoggerJSON.Charge_limit_soc + " " + self.config.unitCharge_limit_soc;
+		  }
+
+		 value.innerHTML = content;
+         value.className = "align-left TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
+		 
+		 row.appendChild(symbolCell);
+		 row.appendChild(value);
+		 
+		 table.appendChild(row);
+      }
+
+
+      // --------------------------------------------------------
+	  // charging
+	  // --------------------------------------------------------
+		 
+      if (self.config.displayCharger_voltage) {
+         row = document.createElement("tr");
+		  
+		 symbolCell = document.createElement("td");
+         symbolCell.className = "align-left TeslaLogger-label";
+		 
+		 symbol = document.createElement("i");
+         symbol.className = "align-left fa fa-fw fa-charging-station";
+		 
+		 symbolCell.appendChild(symbol);
+
+
+		 value = document.createElement("td");
+		 
+         if (self.TeslaLoggerJSON.Charger_voltage == 0) {
+			 content = self.translate("NOTCHARGING");
+		 }
+		 else {
+			 content = self.TeslaLoggerJSON.Charger_voltage + " " + self.config.unitCharger_voltage;
+			 
+			 if (self.config.displayCharger_phases) {
+			    content = content + ", " + self.TeslaLoggerJSON.Charger_phases + self.translate("PHASES");
+			 }
+
+			 if (self.config.displayCharger_actual_current) {
+			    content = content + ", " + self.TeslaLoggerJSON.Charger_actual_current + " " + self.config.unitCharger_actual_current;
+			 }			 
+
+			 if (self.config.displayCharge_energy_added) {
+			    content = content + ", + " + self.TeslaLoggerJSON.Charge_energy_added + " " + self.config.unitCharge_energy_added;
+			 }			 
+		 }
+		 
+		 value.innerHTML = content;
+         value.className = "align-left TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
+		 		 
+		 row.appendChild(symbolCell);
+		 row.appendChild(value);
+		 
+		 table.appendChild(row);
+      }
+
+
+      // --------------------------------------------------------
+	  // Lock
+	  // --------------------------------------------------------
+		 
+      if (self.config.displayLock) {
+         row = document.createElement("tr");
+		  
+		 symbolCell = document.createElement("td");
+         symbolCell.className = "align-left TeslaLogger-label";
+		 
+		 symbol = document.createElement("i");
+         symbol.className = "align-left fa fa-fw fa-unlock-alt";
+		 
+		 symbolCell.appendChild(symbol);
+
+
+		 value = document.createElement("td");
+		 
+         if (self.TeslaLoggerJSON.lock === false) {
+			 content = self.translate("OPEN");
+		 }
+		 else {
+			 content = self.translate("CLOSED");
+		 }
+			 
+		 if (self.config.displaySentry_mode) {
+			 if (self.TeslaLoggerJSON.Sentry_mode) {
+		       content = content + " ";
+		     } else {
+		    	content = content + " ";
+		     }
+		 }
+		 
+		 value.innerHTML = content;
+         value.className = "align-left TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
+		 		 
+		 row.appendChild(symbolCell);
+		 row.appendChild(value);
+		 
+		 table.appendChild(row);
+      }
+
+      // --------------------------------------------------------
+	  // temperatures
+	  // --------------------------------------------------------
+		 
+      if (self.config.displayOutside_temp) {
+         row = document.createElement("tr");
+		  
+		 symbolCell = document.createElement("td");
+         symbolCell.className = "align-left TeslaLogger-label";
+		 
+		 symbol = document.createElement("i");
+         symbol.className = "align-left fa fa-fw fa-thermometer-half";
+		 
+		 symbolCell.appendChild(symbol);
+
+		 row.appendChild(symbolCell);
+
+		 value = document.createElement("td");
+		 
+		 contentDiv = document.createElement("div");		 
+		 content = self.TeslaLoggerJSON.Outside_temp + " " + self.config.unitOutside_temp;
+		 
+		 if (self.config.displayInside_temperature) {
+			 content = content + ", " + self.TeslaLoggerJSON.Inside_temperature + " " + self.config.unitInside_temperature;
+		  }
+		  
+		  contentDiv.innerHTML = content;
+		  
+		  value.appendChild(contentDiv);
+		 
+		 if (self.config.displayIs_preconditioning) {
+	   	    symbol = document.createElement("i");
+            symbol.className = "align-left fa fa-fw fa-fan";
+			symbol.style.color = (self.TeslaLoggerJSON.Is_preconditioning ? "red" : "grey");
+		  }
+		  
+		  value.appendChild(symbol);
+		  
+		 if (self.config.displayBattery_heater) {
+	   	    symbol = document.createElement("i");
+            symbol.className = "align-left fa fa-fw fa-car-battery";
+			symbol.style.color = (self.TeslaLoggerJSON.Battery_heater ? "red" : "grey");
+		  }
+		  
+		  value.appendChild(symbol);
+		 
+         value.className = "align-left TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
+		 		 
+		 row.appendChild(value);
+		 
+		 table.appendChild(row);
+      }
+
+      // --------------------------------------------------------
+	  // trip
+	  // --------------------------------------------------------
+		 
+      if (self.config.displayTrip_distance) {
+         row = document.createElement("tr");
+		  
+		 symbolCell = document.createElement("td");
+         symbolCell.className = "align-left TeslaLogger-label";
+		 
+		 symbol = document.createElement("i");
+         symbol.className = "align-left fa fa-fw fa-suitcase";
+		 
+		 symbolCell.appendChild(symbol);
+
+
+		 value = document.createElement("td");
+		 
+		 content = Math.round(self.TeslaLoggerJSON.Trip_distance) + " " + self.config.unitTrip_distance;
+		 
+		 if (self.config.displayTrip_duration_sec) {
+			 content = content + ", " + Math.round(self.TeslaLoggerJSON.Trip_duration_sec/60) + " " + self.translate("MINUTES");
+		  }
+		 
+		 if (self.config.displayTrip_max_speed) {
+			 content = content + ", " + self.translate("MAX") + " " + self.TeslaLoggerJSON.Trip_max_speed + " " + self.config.unitTrip_max_speed;
+		  }
+
+		 if (self.config.displayTrip_kwh) {
+			 content = content + ", " + Math.round(self.TeslaLoggerJSON.Trip_kwh) + " " + self.config.unitTrip_kwh;
+		  }
+
+		 value.innerHTML = content;
+         value.className = "align-left TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
+		 
+		 row.appendChild(symbolCell);
+		 row.appendChild(value);
+		 
+		 table.appendChild(row);
+      }
+
+
+
+
+      // --------------------------------------------------------
+	  // others
+	  // --------------------------------------------------------
+		 
+      if (self.config.displayOdometer) {
+         row = document.createElement("tr");
+		  
+		 symbolCell = document.createElement("td");
+         symbolCell.className = "align-left TeslaLogger-label";
+		 
+		 symbol = document.createElement("i");
+         symbol.className = "align-left fa fa-fw fa-code-branch";
+		 
+		 symbolCell.appendChild(symbol);
+
+
+		 value = document.createElement("td");
+		 
+		 content = Math.round(self.TeslaLoggerJSON.Odometer) + " " + self.config.unitOdometer;
+		 
+		 if (self.config.displayCar_version) {
+			 var versionStr;
+			 if (self.TeslaLoggerJSON.Car_version) {
+				 versionStr = self.TeslaLoggerJSON.Car_version;
+			 } else {
+				 versionStr = self.translate("UNKNOWN");
+			 }
+			 content = content + ", " + self.translate("VERSION") + " "+ versionStr.substr(0, versionStr.indexOf(" "));
+		  }
+		 
+		 value.innerHTML = content;
+         value.className = "align-left TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
+		 
+		 row.appendChild(symbolCell);
+		 row.appendChild(value);
+		 
+		 table.appendChild(row);
+      }
+
+
+
+
+      return table;
+   },
+   
+   getDomImage: function(table) {
+      self = this;
+	  var row;
+	  var symbolCell;
+	  var symbol;
+	  var value;
+	  var content;
+	  var contentDiv;
+	  var imgStr = "url("+self.config.imageURL+")"
+	  
+	  var tooOld = self.isValueTooOld(self.config.maxAgeSeconds, self.TeslaLoggerJSON.TimeOfStatus);
+
+	  table.style.width = "100%";
+	  table.style.height = "200px";
+	  table.style.backgroundImage = imgStr;
+	  table.style.backgroundPosition = "center center";
+	  table.style.backgroundRepeat = "no-repeat";
+	  table.style.backgroundSize = "cover"; 
+
+      return table;
+   },
+
+   
    isValueTooOld: function(maxAgeSeconds, updatedTime) {
       this.log(this.name + ': maxAgeSeconds = ', maxAgeSeconds);
       this.log(this.name + ': updatedTime = ', updatedTime);
@@ -886,7 +1254,8 @@ Module.register("MMM-TeslaLogger", {
          }
       }
       return false;
-  },
+   },
+
 
 	
    formatDateTime: function(secs) {
@@ -898,10 +1267,10 @@ Module.register("MMM-TeslaLogger", {
    },
 
    toDateTime: function(secs) {
-      var t = new Date(1970, 0, 1); // Epoch
+      var t = new Date(1970, 0, 1); 
       t.setSeconds(secs);
       return t;
-   }
+   },
 
 // ------------------------------------------------------------------------
 // the next three functions are not adapted to the 
