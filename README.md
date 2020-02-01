@@ -6,30 +6,19 @@ Module for [MagicMirror](https://github.com/MichMich/MagicMirror/) showing data 
 
 This module is based on [MMM-MQTT](https://github.com/ottopaulsen/MMM-MQTT) and would not have been possible without the work of [Otto Paulsen](https://github.com/ottopaulsen). Thanks a lot for your work!
 
-## Screenshot
+## Screenshots
 
-here is the present view
-
-![Screenshot](img/screenshot-01.jpg)
-
-this is how it should look like (variant 1)
-
-![Screenshot](img/MMM-Teslalogger-target.png)
-
-(variant 2)
+view "image" with your Tesla image
 
 ![Screenshot](img/MMM-TeslaLogger-target2.png)
 
-font awesome icons:
-<i class="fas fa-toggle-off"></i>
-<i class="fas fa-battery-three-quarters"></i>
-<i class="fas fa-charging-station"></i>
-<i class="fas fa-unlock-alt"></i>
-<i class="fas fa-thermometer-half"></i>
-<i class="fas fa-suitcase"></i>
-<i class="fas fa-fan"></i>
-<i class="fas fa-car-battery"></i>
-<i class="fas fa-code-branch"></i>
+view "groupedLines"
+
+![Screenshot](img/MMM-Teslalogger-target.png)
+
+view "lines"
+
+![Screenshot](img/screenshot-01.jpg)
 
 
 ## Installation
