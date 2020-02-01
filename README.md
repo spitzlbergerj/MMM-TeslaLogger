@@ -120,7 +120,63 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
     </tr>
     <tr>
       <td><code>style</code></td>
-      <td>The style of output.
+      <td>	  displayState: true,
+      displaySpeed: false,
+      displayPower: false,
+      displayOdometer: false,
+      displayIdeal_battery_range_km: false,
+      displayOutside_temp: false,
+      displayBattery_level: false,
+      displayCharger_voltage: false,
+      displayCharger_phases: false,
+      displayCharger_actual_current: false,
+      displayCharge_energy_added: false,
+      displayCharger_power: false,
+      displayCar_version: false,
+      displayTrip_start: false,
+      displayTrip_max_speed: false,
+      displayTrip_max_power: false,
+      displayTrip_duration_sec: false,
+      displayTrip_kwh: false,
+      displayTrip_avg_kwh: false,
+      displayTrip_distance: false,
+      displayTs: false,
+      displayLatitude: false,
+      displayLongitude: false,
+      displayCharge_limit_soc: false,
+      displayInside_temperature: false,
+      displayBattery_heater: false,
+      displayIs_preconditioning: false,
+      displaySentry_mode: false,
+      displayLock: false,
+	  
+      unitSpeed: "km/h",
+      unitPower: "kW",
+      unitOdometer: "km",
+      unitIdeal_battery_range_km: "km",
+      unitOutside_temp: "°C",
+      unitBattery_level: "%",
+      unitCharger_voltage: "V",
+      unitCharger_phases: "",
+      unitCharger_actual_current: "A",
+      unitCharge_energy_added: "kWh",
+      unitCharger_power: "kW",
+      unitCar_version: "",
+      unitTrip_start: "Uhr",
+      unitTrip_max_speed: "km/h",
+      unitTrip_max_power: "kW",
+      unitTrip_duration_sec: "Sek.",
+      unitTrip_kwh: "kWh",
+      unitTrip_avg_kwh: "kWh",
+      unitTrip_distance: "km",
+      unitTs: "Uhr",
+      unitLatitude: "",
+      unitLongitude: "",
+      unitCharge_limit_soc: "%",
+      unitInside_temperature: "°C",
+      unitBattery_heater: "",
+      unitIs_preconditioning: "",
+      unitSentry_mode: "",
         <br><b>Possible values:</b> <code>lines</code> - <code>table</code>
         <br><b>Default value:</b> <code>lines</code>
       </td>
@@ -206,14 +262,4 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
 </table>
 
 ## Further information
-* [HomeMatic](https://www.homematic.com/) - HomeMatic website
-* [XML-API](https://github.com/hobbyquaker/XML-API) - XML-Api for HomeMatic CCU
-* [Homematic-Scripts](https://github.com/spitzlbergerj/homematic-scripts) - Scripts for your HomeMatic installation by [@spitzlbergerj](https://github.com/spitzlbergerj).
-* [MMM-Homematic-Thermostats](https://github.com/spitzlbergerj/MMM-Homematic-Thermostats) - A very good Magic Mirror Module for Homematic radiator thermostats. <br/><br/>
-<img src="https://user-images.githubusercontent.com/38983450/52899709-51bf1c00-31ed-11e9-9410-abd4d4b6ab25.jpg" height="182"/>
-
-
-
-
-
-
+* xxx
