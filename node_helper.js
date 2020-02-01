@@ -1,6 +1,7 @@
 const mqtt = require('mqtt');
 const NodeHelper = require("node_helper");
 const dateFormat = require('dateformat');
+var node_helper_config;
 
 module.exports = NodeHelper.create({
 
@@ -14,13 +15,29 @@ module.exports = NodeHelper.create({
     },
 
     log: function(...args) {
-        if (this.config.logging) {
+        if (node_helper_config.logging) {
             console.log(args);
         }
     },
+	
+    formatDateTime: function(secs) {
+        this.log("Secs", secs);
+        var epoch = new Date(0);
+        epoch.setSeconds(parseInt(secs));
+        this.log("Epoch", epoch);
+        var date = epoch.toISOString();
+        this.log("date", date); 
+        this.log("toLocaleTime",epoch.toLocaleTimeString());
+        var dateStr = date.split('.')[0].split('T')[0]
+        return dateStr.split('-')[2]+'.'+dateStr.split('-')[1] + ' ' + epoch.toLocaleTimeString().split(':')[0]+":"+epoch.toLocaleTimeString().split(':')[1];
+    },
+
+
 
     startClient: function(config) {
 
+		node_helper_config = config;
+		
         console.log(this.name + ': Starting client for: ', config.mqttServerAddress);
 
         var self = this;
@@ -60,9 +77,10 @@ module.exports = NodeHelper.create({
         });
 
         server.client.on('message', function (topic, payload) {
-           // console.log(self.name + ' ' + topic + payload.toString() );
+           self.log(self.name + ' ' + topic + payload.toString() );
 		   var now = Date.now();
-		   var nowStr = Date(now).toLocaleString(config.localeStr);
+		   var nowStr = self.formatDateTime(now/1000);
+           self.log(self.name + ' ' + topic + now + ' ' + nowStr);
            self.sendSocketNotification('MQTT_PAYLOAD', {
                 serverKey: server.serverKey,
                 topic: topic,
