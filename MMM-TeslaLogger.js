@@ -7,6 +7,7 @@ Module.register("MMM-TeslaLogger", {
 	  maxAgeSeconds: 36000,    // Reduce intensity if values are older than 10 hours
 	  localeStr: 'de-DE',
       imageURL: 'modules/MMM-TeslaLogger/img/teslaModelSBlack.png',
+	  imageSize: "70%",
       sentryImageURL: 'modules/MMM-TeslaLogger/img/HAL9000.png',
 	  
 	  // TeslaLogger posts MQTT with topic "Tesla"
@@ -541,6 +542,13 @@ Module.register("MMM-TeslaLogger", {
       }
 
       if (self.config.displayCar_version) {
+		 var versionStr;
+		 if (self.TeslaLoggerJSON.Car_version) {
+		    versionStr = self.TeslaLoggerJSON.Car_version;
+		 } else {
+		    versionStr = self.translate("UNKNOWN");
+		 }
+		 
          row = document.createElement("tr");
 		  
 		 label = document.createElement("td");
@@ -548,7 +556,7 @@ Module.register("MMM-TeslaLogger", {
          label.className = "align-left TeslaLogger-label";
 
 		 value = document.createElement("td");
-		 value.innerHTML = self.TeslaLoggerJSON.Car_version;
+		 value.innerHTML = versionStr.substr(0, versionStr.indexOf(" "));
          value.className = "align-right TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
 		 
  		 suffix = document.createElement("td");
@@ -834,7 +842,7 @@ Module.register("MMM-TeslaLogger", {
          label.className = "align-left TeslaLogger-label";
 
 		 value = document.createElement("td");
-		 value.innerHTML = self.TeslaLoggerJSON.Battery_heater;
+		 value.innerHTML = ( self.TeslaLoggerJSON.Battery_heater ? self.translate("ON") :self.translate("OFF") );
          value.className = "align-right TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
 		 
  		 suffix = document.createElement("td");
@@ -852,11 +860,11 @@ Module.register("MMM-TeslaLogger", {
          row = document.createElement("tr");
 		  
 		 label = document.createElement("td");
-		 label.innerHTML = self.translate("Is_preconditioning");
+		 label.innerHTML = self.translate("IS_PRECONDITIONING");
          label.className = "align-left TeslaLogger-label";
 
 		 value = document.createElement("td");
-		 value.innerHTML = self.TeslaLoggerJSON.Is_preconditioning;
+		 value.innerHTML = ( self.TeslaLoggerJSON.Is_preconditioning ? self.translate("ON") :self.translate("OFF") );
          value.className = "align-right TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
 		 
  		 suffix = document.createElement("td");
@@ -878,7 +886,7 @@ Module.register("MMM-TeslaLogger", {
          label.className = "align-left TeslaLogger-label";
 
 		 value = document.createElement("td");
-		 value.innerHTML = self.TeslaLoggerJSON.Sentry_mode;
+		 value.innerHTML = ( self.TeslaLoggerJSON.Sentry_mode ? self.translate("ON") :self.translate("OFF") );
          value.className = "align-right TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
 		 
  		 suffix = document.createElement("td");
@@ -917,7 +925,7 @@ Module.register("MMM-TeslaLogger", {
          symbolCell.className = "align-left TeslaLogger-label";
 		 
 		 symbol = document.createElement("i");
-         symbol.className = "align-left fa fa-fw fa-toggle-off";
+         symbol.className = "fa fa-fw fa-toggle-off";
 		 
 		 symbolCell.appendChild(symbol);
 
@@ -962,7 +970,7 @@ Module.register("MMM-TeslaLogger", {
          symbolCell.className = "align-left TeslaLogger-label";
 		 
 		 symbol = document.createElement("i");
-         symbol.className = "align-left fa fa-fw fa-battery-three-quarters";
+         symbol.className = "fa fa-fw fa-battery-three-quarters";
 		 
 		 symbolCell.appendChild(symbol);
 
@@ -1000,7 +1008,7 @@ Module.register("MMM-TeslaLogger", {
          symbolCell.className = "align-left TeslaLogger-label";
 		 
 		 symbol = document.createElement("i");
-         symbol.className = "align-left fa fa-fw fa-charging-station";
+         symbol.className = "fa fa-fw fa-charging-station";
 		 
 		 symbolCell.appendChild(symbol);
 
@@ -1047,7 +1055,7 @@ Module.register("MMM-TeslaLogger", {
          symbolCell.className = "align-left TeslaLogger-label";
 		 
 		 symbol = document.createElement("i");
-         symbol.className = "align-left fa fa-fw fa-unlock-alt";
+         symbol.className = "fa fa-fw fa-unlock-alt";
 		 
 		 symbolCell.appendChild(symbol);
 
@@ -1096,7 +1104,7 @@ Module.register("MMM-TeslaLogger", {
          symbolCell.className = "align-left TeslaLogger-label";
 		 
 		 symbol = document.createElement("i");
-         symbol.className = "align-left fa fa-fw fa-thermometer-half";
+         symbol.className = "fa fa-fw fa-thermometer-half";
 		 
 		 symbolCell.appendChild(symbol);
 
@@ -1120,7 +1128,7 @@ Module.register("MMM-TeslaLogger", {
 		 
 		 if (self.config.displayIs_preconditioning && self.TeslaLoggerJSON.Is_preconditioning) {
 	   	    symbol = document.createElement("i");
-            symbol.className = "align-left fa fa-fw fa-snowflake";
+            symbol.className = "fa fa-fw fa-snowflake";
 			symbol.style.color = (self.TeslaLoggerJSON.Is_preconditioning ? "red" : "grey");
 			symbol.style.display = "inline";		 
 		    value.appendChild(symbol);
@@ -1138,7 +1146,7 @@ Module.register("MMM-TeslaLogger", {
 			}
 		  
 	   	    symbol = document.createElement("i");
-            symbol.className = "align-left fa fa-fw fa-car-battery";
+            symbol.className = "fa fa-fw fa-car-battery";
 			symbol.style.color = (self.TeslaLoggerJSON.Battery_heater ? "red" : "grey");
 			symbol.style.display = "inline";		 
 		    value.appendChild(symbol);
@@ -1163,7 +1171,7 @@ Module.register("MMM-TeslaLogger", {
          symbolCell.className = "align-left TeslaLogger-label";
 		 
 		 symbol = document.createElement("i");
-         symbol.className = "align-left fa fa-fw fa-suitcase";
+         symbol.className = "fa fa-fw fa-suitcase";
 		 
 		 symbolCell.appendChild(symbol);
 
@@ -1207,7 +1215,7 @@ Module.register("MMM-TeslaLogger", {
          symbolCell.className = "align-left TeslaLogger-label";
 		 
 		 symbol = document.createElement("i");
-         symbol.className = "align-left fa fa-fw fa-code-branch";
+         symbol.className = "fa fa-fw fa-code-branch";
 		 
 		 symbolCell.appendChild(symbol);
 
@@ -1243,8 +1251,6 @@ Module.register("MMM-TeslaLogger", {
    
    getDomImage: function(table) {
       self = this;
-	  var row;
-	  var symbolCell;
 	  var symbol;
 	  var value;
 	  var content;
@@ -1258,7 +1264,215 @@ Module.register("MMM-TeslaLogger", {
 	  table.style.backgroundImage = imgStr;
 	  table.style.backgroundPosition = "center center";
 	  table.style.backgroundRepeat = "no-repeat";
-	  table.style.backgroundSize = "cover"; 
+	  table.style.backgroundSize = self.config.imageSize; 
+	  
+	  var row1 = document.createElement("tr");
+	  row1.className = 'odometer-version';
+	  row1.align = 'center';
+	  row1.vAlign = 'top';
+	  row1.border = "0px";
+	  row1.margin_bottom = "5px";
+	
+	  var rowElement = document.createElement("td");
+	  rowElement.className = 'align-left symbol-odometer';
+
+	  symbol = document.createElement("i");
+      symbol.className = "fa fa-fw fa-code-branch";	 
+	  rowElement.appendChild(symbol);
+	  row1.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'align-left odometer';
+      rowElement.appendChild(document.createTextNode(Math.round(self.TeslaLoggerJSON.Odometer) + " " + self.config.unitOdometer));
+	  row1.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'space';
+	  row1.appendChild(rowElement);
+
+      var versionStr;
+      if (self.TeslaLoggerJSON.Car_version) {
+         versionStr = self.TeslaLoggerJSON.Car_version;
+      } else {
+         versionStr = self.translate("UNKNOWN");
+      }
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'align-right version';
+      rowElement.appendChild(document.createTextNode(self.translate("VERSION") + " "+ versionStr.substr(0, versionStr.indexOf(" "))));
+	  row1.appendChild(rowElement);
+
+	  var row2 = document.createElement("tr");
+	  row2.className = 'level-lock';
+	  row2.align = 'center';
+	  row2.vAlign = 'top';
+	  row2.border = "0px";
+	  row2.margin_bottom = "5px";
+	
+	  var rowElement = document.createElement("td");
+	  rowElement.className = 'align-left symbol-level';
+
+	  symbol = document.createElement("i");
+      symbol.className = "fa fa-fw fa-battery-three-quarters";	 
+	  rowElement.appendChild(symbol);
+	  row2.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'align-left battery';
+      rowElement.appendChild(document.createTextNode(self.TeslaLoggerJSON.Battery_level + " " + self.config.unitBattery_level));
+	  row2.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'space';
+	  row2.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'align-right lock';
+	  symbol = document.createElement("i");
+      symbol.className = "fa fa-fw " + (self.TeslaLoggerJSON.lock ? "fa-lock-open" : "fa-lock");	 
+	  rowElement.appendChild(symbol);
+	  row2.appendChild(rowElement);
+
+	  var row3 = document.createElement("tr");
+	  row3.className = 'charge-sentry';
+	  row3.align = 'center';
+	  row3.vAlign = 'top';
+	  row3.border = "0px";
+	  row3.margin_bottom = "5px";
+	
+	  var rowElement = document.createElement("td");
+	  rowElement.className = 'align-left symbol-charging';
+
+	  symbol = document.createElement("i");
+      symbol.className = "fa fa-fw fa-charging-station";	 
+	  rowElement.appendChild(symbol);
+	  row3.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'align-left charging';
+      rowElement.appendChild(document.createTextNode(self.TeslaLoggerJSON.Charger_actual_current + " " + self.config.unitCharger_actual_current));
+	  row3.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'space';
+	  row3.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'align-right sentry';
+	  if (self.TeslaLoggerJSON.Sentry_mode) {
+	     symbol = document.createElement('img');
+	     symbol.src = self.config.sentryImageURL;
+	     symbol.width = '18';
+	     rowElement.appendChild(symbol);
+	  }
+	  row3.appendChild(rowElement);
+
+	  var row4 = document.createElement("tr");
+	  row4.className = 'temp-precond';
+	  row4.align = 'center';
+	  row4.vAlign = 'top';
+	  row4.border = "0px";
+	  row4.margin_bottom = "5px";
+	
+	  var rowElement = document.createElement("td");
+	  rowElement.className = 'align-left symbol-temp';
+
+	  symbol = document.createElement("i");
+      symbol.className = "fa fa-fw fa-thermometer-three-quarters";	 
+	  rowElement.appendChild(symbol);
+	  row4.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'align-left tempi';
+      rowElement.appendChild(document.createTextNode(self.TeslaLoggerJSON.Inside_temperature + " " + self.config.unitInside_temperature));
+	  row4.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'space';
+	  row4.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'align-right precond';
+	  symbol = document.createElement("i");
+      symbol.className = "fa fa-fw fa-snowflake";	 
+      symbol.style.color = (self.TeslaLoggerJSON.Is_preconditioning ? "red" : "grey");
+	  rowElement.appendChild(symbol);
+	  row4.appendChild(rowElement);
+
+	  var row5 = document.createElement("tr");
+	  row5.className = 'level-lock';
+	  row5.align = 'center';
+	  row5.vAlign = 'top';
+	  row5.border = "0px";
+	  row5.margin_bottom = "5px";
+	
+	  var rowElement = document.createElement("td");
+	  rowElement.className = 'align-left temp-batt-heat';
+
+	  symbol = document.createElement("i");
+      symbol.className = "fa fa-fw fa-thermometer-low";	 
+	  rowElement.appendChild(symbol);
+	  row5.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'align-left tempo';
+      rowElement.appendChild(document.createTextNode(self.TeslaLoggerJSON.Outside_temp + " " + self.config.unitOutside_temp));
+	  row5.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'space';
+	  row5.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'align-right lock';
+	  symbol = document.createElement("i");
+      symbol.className = "fa fa-fw fa-car-battery";	 
+      symbol.style.color = (self.TeslaLoggerJSON.Battery_heater ? "red" : "grey");
+	  rowElement.appendChild(symbol);
+	  row5.appendChild(rowElement);
+
+	  var row6 = document.createElement("tr");
+	  row6.className = 'trip';
+	  row6.align = 'center';
+	  row6.vAlign = 'top';
+	  row6.border = "0px";
+	  row6.margin_bottom = "5px";
+	
+	  var rowElement = document.createElement("td");
+	  rowElement.className = 'align-left symbol-trip';
+
+	  symbol = document.createElement("i");
+      symbol.className = "fa fa-fw fa-suitcase";	 
+	  rowElement.appendChild(symbol);
+	  row6.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'align-left odometer';
+      rowElement.appendChild(document.createTextNode(
+	     Math.round(self.TeslaLoggerJSON.Trip_distance) + " " + self.config.unitTrip_distance + ", " +
+		 Math.round(self.TeslaLoggerJSON.Trip_duration_sec/60) + " " + self.translate("MINUTES") + ", " +
+		 self.translate("MAX") + " " + self.TeslaLoggerJSON.Trip_max_speed + " " + self.config.unitTrip_max_speed + ", " +
+		 Math.round(self.TeslaLoggerJSON.Trip_kwh) + " " + self.config.unitTrip_kwh
+	  ));
+	  row6.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'space';
+	  row6.appendChild(rowElement);
+
+	  rowElement = document.createElement("td");
+	  rowElement.className = 'align-right empty';
+	  row6.appendChild(rowElement);
+
+
+		 		 
+      // Building of the table rows
+      table.appendChild(row1);
+      table.appendChild(row2);
+      table.appendChild(row3);
+      table.appendChild(row4);
+      table.appendChild(row5);
+      table.appendChild(row6);		 
 
       return table;
    },
