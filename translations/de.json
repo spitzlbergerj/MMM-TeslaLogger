@@ -44,6 +44,8 @@
 	"MINUTES":"min",
 	"VERSION":"Version:",
 	"UNKNOWN":"unbekannt",
+	"ON":"an",
+	"OFF":"aus",
 	
 	"END":"end"
 }
