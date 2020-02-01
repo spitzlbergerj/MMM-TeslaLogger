@@ -10,7 +10,7 @@ This module is based on [MMM-MQTT](https://github.com/ottopaulsen/MMM-MQTT) and 
 
 view "image" with your Tesla image
 
-![Screenshot](img/MMM-TeslaLogger-SceenShot-image.jpg)
+![Screenshot](img/MMM-TeslaLogger-ScreenShot-image.jpg)
 
 view "groupedLines"
 
