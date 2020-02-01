@@ -14,11 +14,11 @@ view "image" with your Tesla image
 
 view "groupedLines"
 
-![Screenshot](img/MMM-Teslalogger-target.png)
+![Screenshot](img/MMM-TeslaLogger-SceenShot-groupedLines.jpg)
 
 view "lines"
 
-![Screenshot](img/screenshot-01.jpg)
+![Screenshot](img/MMM-TeslaLogger-ScreenShot-lines.jpg)
 
 
 ## Installation
