@@ -139,7 +139,7 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
       </td>
     </tr>
     <tr>
-      <td><code>display**<br>unit**</code></td>
+      <td><code>display**</code><br><code>unit**</code></td>
       <td>If the corresponding data field should be displayed in the <code>style</code> <code>lines</code> or <code>groupedLines</code> then set the corresponding <code>display**</code> value to true. At present, these specifications do not yet have any influence on the display in <code>style</code> <code>image</code>.
 			<br>
 			Use the <code>unit**</code> variables to set which unit should be displayed after the value specification
@@ -165,189 +165,189 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
 				  <td><code>"km/h"</code></td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>actual power of the car</td>
 				  <td><code>displayPower</code></td>
 				  <td><code>unitPower</code></td>
 				  <td><code>"kW"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>Odometer</td>
 				  <td><code>displayOdometer</code></td>
 				  <td><code>unitOdometer</code></td>
 				  <td><code>"km"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>Ideal range of km with actual battery level</td>
 				  <td><code>displayIdeal_battery_range_km</code></td>
 				  <td><code>unitIdeal_battery_range_km</code></td>
 				  <td><code>"km"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>outside temperature</td>
 				  <td><code>displayOutside_temp</code></td>
 				  <td><code>unitOutside_temp</code></td>
 				  <td><code>"°C"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>actual level of battery</td>
 				  <td><code>displayBattery_level</code></td>
 				  <td><code>unitBattery_level</code></td>
 				  <td><code>"%"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>actual voltage during charging</td>
 				  <td><code>displayCharger_voltage</code></td>
 				  <td><code>unitCharger_voltage</code></td>
 				  <td><code>"V"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>actual phases during charging</td>
 				  <td><code>displayCharger_phases</code></td>
 				  <td><code>unitCharger_phases</code></td>
 				  <td><code>""</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>actual current during charging</td>
 				  <td><code>displayCharger_actual_current</code></td>
 				  <td><code>unitCharger_actual_current</code></td>
 				  <td><code>"A"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>energy added since start of charging</td>
 				  <td><code>displayCharge_energy_added</code></td>
 				  <td><code>unitCharge_energy_added</code></td>
 				  <td><code>"kWh"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>actual power during charging</td>
 				  <td><code>displayCharger_power</code></td>
 				  <td><code>unitCharger_power</code></td>
 				  <td><code>"kW"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>SW version of the car</td>
 				  <td><code>displayCar_version</code></td>
 				  <td><code>unitCar_version</code></td>
 				  <td><code>""</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>time of actual/last trip start</td>
 				  <td><code>displayTrip_start</code></td>
 				  <td><code>unitTrip_start</code></td>
 				  <td><code>"Uhr"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>max speed during actual/last trip</td>
 				  <td><code>displayTrip_max_speed</code></td>
 				  <td><code>unitTrip_max_speed</code></td>
 				  <td><code>"km/h"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>max power during actual/last trip</td>
 				  <td><code>displayTrip_max_power</code></td>
 				  <td><code>unitTrip_max_power</code></td>
 				  <td><code>"kW"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>duration of actual/last trip in seconds</td>
 				  <td><code>displayTrip_duration_sec</code></td>
 				  <td><code>unitTrip_duration_sec</code></td>
 				  <td><code>"Sek."</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>spended kwh since start of actual/last trip</td>
 				  <td><code>displayTrip_kwh</code></td>
 				  <td><code>unitTrip_kwh</code></td>
 				  <td><code>"kWh"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>average kwh during actual/last trip</td>
 				  <td><code>displayTrip_avg_kwh</code></td>
 				  <td><code>unitTrip_avg_kwh</code></td>
 				  <td><code>"kWh"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>distance since start of actual/last trip</td>
 				  <td><code>displayTrip_distance</code></td>
 				  <td><code>unitTrip_distance</code></td>
 				  <td><code>"km"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>time of ???</td>
 				  <td><code>displayTs</code></td>
 				  <td><code>unitTs</code></td>
 				  <td><code>"Uhr"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>actual latitude</td>
 				  <td><code>displayLatitude</code></td>
 				  <td><code>unitLatitude</code></td>
 				  <td><code>""</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>actual longitude</td>
 				  <td><code>displayLongitude</code></td>
 				  <td><code>unitLongitude</code></td>
 				  <td><code>""</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>actual level limit of charging</td>
 				  <td><code>displayCharge_limit_soc</code></td>
 				  <td><code>unitCharge_limit_soc</code></td>
 				  <td><code>"%"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>inside temperature</td>
 				  <td><code>displayInside_temperature</code></td>
 				  <td><code>unitInside_temperature</code></td>
 				  <td><code>"°C"</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>is battery heater active?</td>
 				  <td><code>displayBattery_heater</code></td>
 				  <td><code>unitBattery_heater</code></td>
 				  <td><code>""</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>is preconditioning active?</td>
 				  <td><code>displayIs_preconditioning</code></td>
 				  <td><code>unitIs_preconditioning</code></td>
 				  <td><code>""</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>is sentry mode active?</td>
 				  <td><code>displaySentry_mode</code></td>
 				  <td><code>unitSentry_mode</code></td>
 				  <td><code>""</code>
 				  </td>
 				</tr>
 				<tr>
-				  <td>state of the car</td>
+				  <td>is the car locked - not used yet, because actually not in MQTT message</td>
 				  <td><code>displayLock</code></td>
 				  <td><code></code></td>
 				  <td><code>""</code>
