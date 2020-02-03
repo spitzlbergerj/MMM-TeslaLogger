@@ -143,306 +143,218 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
       <td>If the corresponding data field should be displayed in the <code>style</code> <code>lines</code> or <code>groupedLines</code> then set the corresponding <code>display**</code> value to true. At present, these specifications do not yet have any influence on the display in <code>style</code> <code>image</code>.
 			<br>
 			Use the <code>unit**</code> variables to set which unit should be displayed after the value specification
-		  <br>
-		  <br>
-		  <br><b>Possible values:</b> <code>"true"</code> - <code>"false"</code>
-		  <br><b>Default value:</b> <code>"false"</code><br> with exception of field displayState where the default ist <code>true</code>
-      </td>
-    </tr>
-    <tr>
-      <td><code>unit**</code></td>
-      <td>Use these variables to set which unit should be displayed after the value specification
-		<table width="100%">
-		  <thead>
-			<tr>
-			  <th>display** Variable</th>
-			  <th>unit** Variable</th>
-			  <th width="100%">default setting for units</th>
-			</tr>
-		  <thead>
-		  <tbody>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayState</code></td>
-			  <td></td>
-			  <td></td>
-			</tr>
-			<tr>
-			  <td>actual speed of the car</td>
-			  <td><code>displaySpeed</code></td>
-			  <td><code>unitSpeed</code></td>
-			  <td><code>"km/h"</code></td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayPower</code></td>
-			  <td><code>unitPower</code></td>
-			  <td><code>"kW"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayOdometer</code></td>
-			  <td><code>unitOdometer</code></td>
-			  <td><code>"km"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayIdeal_battery_range_km</code></td>
-			  <td><code>unitIdeal_battery_range_km</code></td>
-			  <td><code>"km"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayOutside_temp</code></td>
-			  <td><code>unitOutside_temp</code></td>
-			  <td><code>"°C"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayBattery_level</code></td>
-			  <td><code>unitBattery_level</code></td>
-			  <td><code>"%"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayCharger_voltage</code></td>
-			  <td><code>unitCharger_voltage</code></td>
-			  <td><code>"V"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayCharger_phases</code></td>
-			  <td><code>unitCharger_phases</code></td>
-			  <td><code>""</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayCharger_actual_current</code></td>
-			  <td><code>unitCharger_actual_current</code></td>
-			  <td><code>"A"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayCharge_energy_added</code></td>
-			  <td><code>unitCharge_energy_added</code></td>
-			  <td><code>"kWh"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayCharger_power</code></td>
-			  <td><code>unitCharger_power</code></td>
-			  <td><code>"kW"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayCar_version</code></td>
-			  <td><code>unitCar_version</code></td>
-			  <td><code>""</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayTrip_start</code></td>
-			  <td><code>unitTrip_start</code></td>
-			  <td><code>"Uhr"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayTrip_max_speed</code></td>
-			  <td><code>unitTrip_max_speed</code></td>
-			  <td><code>"km/h"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayTrip_max_power</code></td>
-			  <td><code>unitTrip_max_power</code></td>
-			  <td><code>"kW"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayTrip_duration_sec</code></td>
-			  <td><code>unitTrip_duration_sec</code></td>
-			  <td><code>"Sek."</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayTrip_kwh</code></td>
-			  <td><code>unitTrip_kwh</code></td>
-			  <td><code>"kWh"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayTrip_avg_kwh</code></td>
-			  <td><code>unitTrip_avg_kwh</code></td>
-			  <td><code>"kWh"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayTrip_distance</code></td>
-			  <td><code>unitTrip_distance</code></td>
-			  <td><code>"km"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayTs</code></td>
-			  <td><code>unitTs</code></td>
-			  <td><code>"Uhr"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayLatitude</code></td>
-			  <td><code>unitLatitude</code></td>
-			  <td><code>""</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayLongitude</code></td>
-			  <td><code>unitLongitude</code></td>
-			  <td><code>""</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayCharge_limit_soc</code></td>
-			  <td><code>unitCharge_limit_soc</code></td>
-			  <td><code>"%"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayInside_temperature</code></td>
-			  <td><code>unitInside_temperature</code></td>
-			  <td><code>"°C"</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayBattery_heater</code></td>
-			  <td><code>unitBattery_heater</code></td>
-			  <td><code>""</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayIs_preconditioning</code></td>
-			  <td><code>unitIs_preconditioning</code></td>
-			  <td><code>""</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displaySentry_mode</code></td>
-			  <td><code>unitSentry_mode</code></td>
-			  <td><code>""</code>
-			  </td>
-			</tr>
-			<tr>
-			  <td>state of the car</td>
-			  <td><code>displayLock</code></td>
-			  <td><code></code></td>
-			  <td><code>""</code>
-			  </td>
-			</tr>
-		   </tbody>
-		</table>
-       <br><b>Possible values:</b> <code>lines</code> - <code>table</code>
-        <br><b>Default value:</b> <code>lines</code>
-      </td>
-    </tr>
-    <tr>
-      <td><code>tempUnit</code></td>
-      <td>The unit of temperature.
-        <br><b>Possible values:</b> <code>°C</code> - <code>°F</code> - <code>K</code>
-        <br><b>Default value:</b> <code>°C</code>
-      </td>
-    </tr>
-    <tr>
-      <td><code>humUnit</code></td>
-      <td>The unit of humidity.
-        <br><b>Possible values:</b> <code>%</code> - <code>g/m³</code>
-        <br><b>Default value:</b> <code>%</code>
-      </td>
-    </tr>
-    <tr>
-      <td><code>shutterUnit</code></td>
-      <td>The unit of the shutter actuator.
-        <br><b>Possible values:</b> <code>%</code> - <code>pc</code>
-        <br><b>Default value:</b> <code>%</code>
-      </td>
-    </tr>
-    <tr>
-      <td><code>numberUnit</code></td>
-      <td>The unit of a numeric value.
-	<br>This value is only used for 'other' and 'sysvar_number' types.
-        <br><b>Possible values:</b> any string value for example <code>"km/h"</code>
-        <br><b>Default value:</b> <code>" "</code>
-      </td>
-    </tr>
-    <tr>
-      <td><code>tableShowTextRow</code></td>
-      <td>Toggles whether the row with the names of the devices is displayed in the table view.
-	<br>This value is only used in table view.
-      <br><b>Possible values:</b> <code>"true"</code> - <code>"false"</code>
-      <br><b>Default value:</b> <code>"true"</code>
-      </td>
-    </tr>
-    <tr>
-      <td><code>tableShowValueRow</code></td>
-      <td>Toggles whether the row with the values of the devices is displayed in the table view.
-	<br>This value is only used in table view.
-      <br><b>Possible values:</b> <code>"true"</code> - <code>"false"</code>
-      <br><b>Default value:</b> <code>"true"</code>
-      </td>
-    </tr>
-    <tr>
-      <td><code>locale</code></td>
-      <td>String for country-specific formatting of numbers.
-        <br><b>Possible values:</b> see <a href="https://tools.ietf.org/html/rfc5646">Tags for Identifying Languages</a>
-		<br><b>Example values:</b> <code>de-DE</code> - <code>en-US</code>
-        <br><b>Default value:</b> <code>config.language(default:en)</code>
-      </td>
-    </tr>
-    <tr>
-      <td><code>datapoints</code></td>
-      <td>An array of datapoint objects.
-		<br>Each datapoint object represents one value/state of a device.
-		<br><b>Example value:</b>
-		<br><code>[{
-		<br>id: 1234,
-		<br>name: "front door",
-		<br>type: window_warn_open,
-		<br>},{
-		<br>id: 4711,
-		<br>name: "humidity laundry room",
-		<br>type: "hum_warn_high",
-		<br>threshold: "60"
-		<br>}]</code>
-      </td>
-    </tr>
-    <tr>
-      <td><code>animationSpeed</code></td>
-      <td>Speed of the update animation. (Milliseconds)<br>
-        <br><b>Possible values:</b><code>0</code> - <code>5000</code>
-        <br><b>Default value:</b> <code>1000</code> (1 seconds)
+			<table width="100%">
+			  <thead>
+				<tr>
+				  <th>display** Variable</th>
+				  <th>unit** Variable</th>
+				  <th width="100%">default setting for units</th>
+				</tr>
+			  <thead>
+			  <tbody>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayState</code></td>
+				  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>actual speed of the car</td>
+				  <td><code>displaySpeed</code></td>
+				  <td><code>unitSpeed</code></td>
+				  <td><code>"km/h"</code></td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayPower</code></td>
+				  <td><code>unitPower</code></td>
+				  <td><code>"kW"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayOdometer</code></td>
+				  <td><code>unitOdometer</code></td>
+				  <td><code>"km"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayIdeal_battery_range_km</code></td>
+				  <td><code>unitIdeal_battery_range_km</code></td>
+				  <td><code>"km"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayOutside_temp</code></td>
+				  <td><code>unitOutside_temp</code></td>
+				  <td><code>"°C"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayBattery_level</code></td>
+				  <td><code>unitBattery_level</code></td>
+				  <td><code>"%"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayCharger_voltage</code></td>
+				  <td><code>unitCharger_voltage</code></td>
+				  <td><code>"V"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayCharger_phases</code></td>
+				  <td><code>unitCharger_phases</code></td>
+				  <td><code>""</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayCharger_actual_current</code></td>
+				  <td><code>unitCharger_actual_current</code></td>
+				  <td><code>"A"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayCharge_energy_added</code></td>
+				  <td><code>unitCharge_energy_added</code></td>
+				  <td><code>"kWh"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayCharger_power</code></td>
+				  <td><code>unitCharger_power</code></td>
+				  <td><code>"kW"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayCar_version</code></td>
+				  <td><code>unitCar_version</code></td>
+				  <td><code>""</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayTrip_start</code></td>
+				  <td><code>unitTrip_start</code></td>
+				  <td><code>"Uhr"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayTrip_max_speed</code></td>
+				  <td><code>unitTrip_max_speed</code></td>
+				  <td><code>"km/h"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayTrip_max_power</code></td>
+				  <td><code>unitTrip_max_power</code></td>
+				  <td><code>"kW"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayTrip_duration_sec</code></td>
+				  <td><code>unitTrip_duration_sec</code></td>
+				  <td><code>"Sek."</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayTrip_kwh</code></td>
+				  <td><code>unitTrip_kwh</code></td>
+				  <td><code>"kWh"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayTrip_avg_kwh</code></td>
+				  <td><code>unitTrip_avg_kwh</code></td>
+				  <td><code>"kWh"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayTrip_distance</code></td>
+				  <td><code>unitTrip_distance</code></td>
+				  <td><code>"km"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayTs</code></td>
+				  <td><code>unitTs</code></td>
+				  <td><code>"Uhr"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayLatitude</code></td>
+				  <td><code>unitLatitude</code></td>
+				  <td><code>""</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayLongitude</code></td>
+				  <td><code>unitLongitude</code></td>
+				  <td><code>""</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayCharge_limit_soc</code></td>
+				  <td><code>unitCharge_limit_soc</code></td>
+				  <td><code>"%"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayInside_temperature</code></td>
+				  <td><code>unitInside_temperature</code></td>
+				  <td><code>"°C"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayBattery_heater</code></td>
+				  <td><code>unitBattery_heater</code></td>
+				  <td><code>""</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayIs_preconditioning</code></td>
+				  <td><code>unitIs_preconditioning</code></td>
+				  <td><code>""</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displaySentry_mode</code></td>
+				  <td><code>unitSentry_mode</code></td>
+				  <td><code>""</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>state of the car</td>
+				  <td><code>displayLock</code></td>
+				  <td><code></code></td>
+				  <td><code>""</code>
+				  </td>
+				</tr>
+			   </tbody>
+			</table>
       </td>
     </tr>
   </tbody>
