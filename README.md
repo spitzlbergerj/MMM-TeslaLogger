@@ -1,6 +1,6 @@
 # Teslalogger
 
-Module for [MagicMirror](https://github.com/MichMich/MagicMirror/) showing data from the [Teslalogger](https://github.com/bassmaster187/TeslaLogger) subscribed to via MQTT.
+Module for [MagicMirror](https://github.com/MichMich/MagicMirror/) showing data from the [Teslalogger](https://github.com/bassmaster187/TeslaLogger) or from [teslamate](https://github.com/adriankumpf/teslamate) or both subscribed to via MQTT.
 
 This module is based on [MMM-MQTT](https://github.com/ottopaulsen/MMM-MQTT) and would not have been possible without the work of [Otto Paulsen](https://github.com/ottopaulsen). Thanks a lot for your work!
 
@@ -43,6 +43,10 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
         mqttServerPort: '1883',
         // mqttServerUser: '',
         // mqttServerPassword: '',
+	mqttTopics: [
+		"Tesla",
+		"teslamate/cars/1/+",
+	],
         logging: true,
 		localeStr: 'de-DE',
         maxAgeSeconds: 36000,
@@ -88,6 +92,12 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
       <td><code>mqttServerPassword</code></td>
       <td>Password of user to access the MQTT Broker (optional)
       </td>
+    </tr>
+    <tr>
+      <td><code>mqttTopics</code></td>
+      <td>Topics for the MQTT Broker (optional)
+      <br><b>Possible values:</b> <code>["Tesla",]</code> - <code>["teslamate/cars/1/+",]</code> - <code>["Tesla","teslamate/cars/1/+",]</code>
+      <br><b>Default value:</b> <code>["Tesla",]</code>      </td>
     </tr>
     <tr>
       <td><code>style</code></td>
