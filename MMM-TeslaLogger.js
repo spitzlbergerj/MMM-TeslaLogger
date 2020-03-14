@@ -161,38 +161,159 @@ Module.register("MMM-TeslaLogger", {
          if (payload != null) {
             var value = payload.value;
 
-            this.TeslaLoggerJSON.Charging = get(JSON.parse(value), "/charging");
-            this.TeslaLoggerJSON.Driving = get(JSON.parse(value), "/driving");
-            this.TeslaLoggerJSON.Online = get(JSON.parse(value), "/online");
-            this.TeslaLoggerJSON.Sleeping = get(JSON.parse(value), "/sleeping");
-            this.TeslaLoggerJSON.Speed = get(JSON.parse(value), "/speed");
-            this.TeslaLoggerJSON.Power = get(JSON.parse(value), "/power");
-            this.TeslaLoggerJSON.Odometer = get(JSON.parse(value), "/odometer");
-            this.TeslaLoggerJSON.Ideal_battery_range_km = get(JSON.parse(value), "/ideal_battery_range_km");
-            this.TeslaLoggerJSON.Outside_temp = get(JSON.parse(value), "/outside_temp");
-            this.TeslaLoggerJSON.Battery_level = get(JSON.parse(value), "/battery_level");
-            this.TeslaLoggerJSON.Charger_voltage = get(JSON.parse(value), "/charger_voltage");
-            this.TeslaLoggerJSON.Charger_phases = get(JSON.parse(value), "/charger_phases");
-            this.TeslaLoggerJSON.Charger_actual_current = get(JSON.parse(value), "/charger_actual_current");
-            this.TeslaLoggerJSON.Charge_energy_added = get(JSON.parse(value), "/charge_energy_added");
-            this.TeslaLoggerJSON.Charger_power = get(JSON.parse(value), "/charger_power");
-            this.TeslaLoggerJSON.Car_version = get(JSON.parse(value), "/car_version");
-            this.TeslaLoggerJSON.Trip_start = get(JSON.parse(value), "/trip_start");
-            this.TeslaLoggerJSON.Trip_max_speed = get(JSON.parse(value), "/trip_max_speed");
-            this.TeslaLoggerJSON.Trip_max_power = get(JSON.parse(value), "/trip_max_power");
-            this.TeslaLoggerJSON.Trip_duration_sec = get(JSON.parse(value), "/trip_duration_sec");
-            this.TeslaLoggerJSON.Trip_kwh = get(JSON.parse(value), "/trip_kwh");
-            this.TeslaLoggerJSON.Trip_avg_kwh = get(JSON.parse(value), "/trip_avg_kwh");
-            this.TeslaLoggerJSON.Trip_distance = get(JSON.parse(value), "/trip_distance");
-            this.TeslaLoggerJSON.Ts = get(JSON.parse(value), "/ts");
-            this.TeslaLoggerJSON.Latitude = get(JSON.parse(value), "/latitude");
-            this.TeslaLoggerJSON.Longitude = get(JSON.parse(value), "/longitude");
-            this.TeslaLoggerJSON.Charge_limit_soc = get(JSON.parse(value), "/charge_limit_soc");
-            this.TeslaLoggerJSON.Inside_temperature = get(JSON.parse(value), "/inside_temperature");
-            this.TeslaLoggerJSON.Battery_heater = get(JSON.parse(value), "/battery_heater");
-            this.TeslaLoggerJSON.Is_preconditioning = get(JSON.parse(value), "/is_preconditioning");
-            this.TeslaLoggerJSON.Sentry_mode = get(JSON.parse(value), "/sentry_mode");
-			
+			// Verarbeittung TeslaLogger MQTT Telegramme
+			if (payload.topic === "Tesla") {
+				this.TeslaLoggerJSON.Charging = get(JSON.parse(value), "/charging");
+				this.TeslaLoggerJSON.Driving = get(JSON.parse(value), "/driving");
+				this.TeslaLoggerJSON.Online = get(JSON.parse(value), "/online");
+				this.TeslaLoggerJSON.Sleeping = get(JSON.parse(value), "/sleeping");
+				this.TeslaLoggerJSON.Speed = get(JSON.parse(value), "/speed");
+				this.TeslaLoggerJSON.Power = get(JSON.parse(value), "/power");
+				this.TeslaLoggerJSON.Odometer = get(JSON.parse(value), "/odometer");
+				this.TeslaLoggerJSON.Ideal_battery_range_km = get(JSON.parse(value), "/ideal_battery_range_km");
+				this.TeslaLoggerJSON.Outside_temp = get(JSON.parse(value), "/outside_temp");
+				this.TeslaLoggerJSON.Battery_level = get(JSON.parse(value), "/battery_level");
+				this.TeslaLoggerJSON.Charger_voltage = get(JSON.parse(value), "/charger_voltage");
+				this.TeslaLoggerJSON.Charger_phases = get(JSON.parse(value), "/charger_phases");
+				this.TeslaLoggerJSON.Charger_actual_current = get(JSON.parse(value), "/charger_actual_current");
+				this.TeslaLoggerJSON.Charge_energy_added = get(JSON.parse(value), "/charge_energy_added");
+				this.TeslaLoggerJSON.Charger_power = get(JSON.parse(value), "/charger_power");
+				this.TeslaLoggerJSON.Car_version = get(JSON.parse(value), "/car_version");
+				this.TeslaLoggerJSON.Trip_start = get(JSON.parse(value), "/trip_start");
+				this.TeslaLoggerJSON.Trip_max_speed = get(JSON.parse(value), "/trip_max_speed");
+				this.TeslaLoggerJSON.Trip_max_power = get(JSON.parse(value), "/trip_max_power");
+				this.TeslaLoggerJSON.Trip_duration_sec = get(JSON.parse(value), "/trip_duration_sec");
+				this.TeslaLoggerJSON.Trip_kwh = get(JSON.parse(value), "/trip_kwh");
+				this.TeslaLoggerJSON.Trip_avg_kwh = get(JSON.parse(value), "/trip_avg_kwh");
+				this.TeslaLoggerJSON.Trip_distance = get(JSON.parse(value), "/trip_distance");
+				this.TeslaLoggerJSON.Ts = get(JSON.parse(value), "/ts");
+				this.TeslaLoggerJSON.Latitude = get(JSON.parse(value), "/latitude");
+				this.TeslaLoggerJSON.Longitude = get(JSON.parse(value), "/longitude");
+				this.TeslaLoggerJSON.Charge_limit_soc = get(JSON.parse(value), "/charge_limit_soc");
+				this.TeslaLoggerJSON.Inside_temperature = get(JSON.parse(value), "/inside_temperature");
+				this.TeslaLoggerJSON.Battery_heater = get(JSON.parse(value), "/battery_heater");
+				this.TeslaLoggerJSON.Is_preconditioning = get(JSON.parse(value), "/is_preconditioning");
+				this.TeslaLoggerJSON.Sentry_mode = get(JSON.parse(value), "/sentry_mode");
+			}
+
+			if (payload.topic.substr(0,9) === "teslamate") {
+				if (payload.topic.substr(17) === "locked") {
+					if (value === "true") {
+						this.TeslaLoggerJSON.lock = true;
+					}
+					else {
+						this.TeslaLoggerJSON.lock = false;
+					}
+				}
+
+				if (payload.topic.substr(17) === "state") {
+					this.TeslaLoggerJSON.Charging = false;
+					this.TeslaLoggerJSON.Driving = false;
+					this.TeslaLoggerJSON.Online = false;
+					this.TeslaLoggerJSON.Sleeping = false;
+
+					if (value === "online") {
+						this.TeslaLoggerJSON.Online = true;
+					}
+					if (value === "charging") {
+						this.TeslaLoggerJSON.Charging = true;
+					}
+					if (value === "asleep") {
+						this.TeslaLoggerJSON.Sleeping = true;
+					}
+					if (value === "driving") {
+						this.TeslaLoggerJSON.Driving = true;
+					}
+				}
+
+				if (payload.topic.substr(17) === "speed") {
+					this.TeslaLoggerJSON.Speed = value;
+				}
+
+				if (payload.topic.substr(17) === "charger_power") {
+					this.TeslaLoggerJSON.Power = value;
+				}
+
+				if (payload.topic.substr(17) === "odometer") {
+					this.TeslaLoggerJSON.Odometer = value;
+				}
+
+				if (payload.topic.substr(17) === "ideal_battery_range_km") {
+					this.TeslaLoggerJSON.Ideal_battery_range_km = value;
+				}
+
+				if (payload.topic.substr(17) === "outside_temp") {
+					this.TeslaLoggerJSON.Outside_temp = value;
+				}
+
+				if (payload.topic.substr(17) === "battery_level") {
+					this.TeslaLoggerJSON.Battery_level = value;
+				}
+
+				if (payload.topic.substr(17) === "charger_voltage") {
+					this.TeslaLoggerJSON.Charger_voltage = value;
+				}
+
+				if (payload.topic.substr(17) === "charger_phases") {
+					this.TeslaLoggerJSON.Charger_phases = value;
+				}
+
+				if (payload.topic.substr(17) === "charger_actual_current") {
+					this.TeslaLoggerJSON.Charger_actual_current = value;
+				}
+				
+				if (payload.topic.substr(17) === "charge_energy_added") {
+					this.TeslaLoggerJSON.Charge_energy_added = value;
+				}
+					
+				if (payload.topic.substr(17) === "charger_power") {
+					this.TeslaLoggerJSON.Charger_power = value;
+				}
+				
+				if (payload.topic.substr(17) === "version") {
+					this.TeslaLoggerJSON.Car_version = value;
+				}
+						
+				if (payload.topic.substr(17) === "since") {
+					this.TeslaLoggerJSON.Ts = value;
+				}
+								
+				if (payload.topic.substr(17) === "latitude") {
+					this.TeslaLoggerJSON.Latitude = value;
+				}
+								
+				if (payload.topic.substr(17) === "longitude") {
+					this.TeslaLoggerJSON.Longitude = value;
+				}
+								
+				if (payload.topic.substr(17) === "charge_limit_soc") {
+					this.TeslaLoggerJSON.Charge_limit_soc = value;
+				}
+								
+				if (payload.topic.substr(17) === "inside_temp") {
+					this.TeslaLoggerJSON.Inside_temperature = value;
+				}
+								
+				if (payload.topic.substr(17) === "is_preconditioning") {
+					this.TeslaLoggerJSON.Is_preconditioning = value;
+				}
+								
+				if (payload.topic.substr(17) === "sentry_mode") {
+					this.TeslaLoggerJSON.Sentry_mode = value;
+				}
+
+				// teslamate liefert keine Trip Daten und für die Batterie heizung
+				this.TeslaLoggerJSON.Trip_start = "-";
+				this.TeslaLoggerJSON.Trip_max_speed = 0;
+				this.TeslaLoggerJSON.Trip_max_power = 0;
+				this.TeslaLoggerJSON.Trip_duration_sec = 0;
+				this.TeslaLoggerJSON.Trip_kwh = 0;
+				this.TeslaLoggerJSON.Trip_avg_kwh = 0;
+				this.TeslaLoggerJSON.Trip_distance = 0;
+				this.TeslaLoggerJSON.Battery_heater = false;
+
+			}
+
 			this.TeslaLoggerJSON.TimeOfStatus = payload.time;
 			this.TeslaLoggerJSON.TimeOfStatusStr = payload.timeStr;
 			
