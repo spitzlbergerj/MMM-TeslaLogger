@@ -10,11 +10,12 @@ Module.register("MMM-TeslaLogger", {
       sentryImageURL: 'modules/MMM-TeslaLogger/img/HAL9000.png',
 	  
 	  // TeslaLogger posts MQTT with topic "Tesla"
-      mqttTopics: [
-         "Tesla",
-      ],
-	  
-	  displayState: true,
+	  mqttTopics: [
+	     "Tesla",
+	     "teslamate/cars/1/+",
+	  ],
+
+      displayState: true,
       displaySpeed: false,
       displayPower: false,
       displayOdometer: false,
