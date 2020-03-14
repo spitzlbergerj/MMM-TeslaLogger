@@ -97,7 +97,7 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
       <td><code>mqttTopics</code></td>
       <td>Topics for the MQTT Broker (optional)
       <br><b>Possible values:</b> <code>["Tesla",]</code> - <code>["teslamate/cars/1/+",]</code> - <code>["Tesla","teslamate/cars/1/+",]</code>
-      <br><b>Default value:</b> <code>["Tesla",]</code>      </td>
+      <br><b>Default value:</b> <code>["Tesla","teslamate/cars/1/+",]</code>      </td>
     </tr>
     <tr>
       <td><code>style</code></td>
