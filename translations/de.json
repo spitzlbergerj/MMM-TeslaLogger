@@ -33,6 +33,16 @@
 	"BATTERY_HEATER":"Batterieheizung",
 	"IS_PRECONDITIONING":"Vorheizen",
 	"SENTRY_MODE":"Wächtermodus",
+	"LOCK":"Fahrzeug",
+	"GEOFENCE":"Ort",
+	"UPDATE_AVAILABLE":"Update verfügbar",
+	"EST_BATTERY_RANGE_KM":"Erw. Reichweite",
+	"TIME_TO_FULL_CHARGE":"Batterie voll in",
+	"WINDOWS_OPEN":"Fenster",
+	"DOORS_OPEN":"Türen",
+	"IS_USER_PRESENT":"Personen",
+	"PLUGGED_IN":"Eingesteckt",
+	"SCHEDULED_CHARGING_START_TIME":"Laden startet um",
 	
 	"STATUS":"Stand: ",
 	"WITH":"mit",
@@ -46,6 +56,10 @@
 	"UNKNOWN":"unbekannt",
 	"ON":"an",
 	"OFF":"aus",
-	
+	"PRESENT": "im Auto",
+	"AWAY": "nicht im Auto",
+	"YES": "ja",
+	"NO": "nein",
+
 	"END":"end"
 }
