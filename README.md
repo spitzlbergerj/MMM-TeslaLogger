@@ -150,7 +150,9 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
     </tr>
     <tr>
       <td><code>display**</code><br><code>unit**</code></td>
-      <td>If the corresponding data field should be displayed in the <code>style</code> <code>lines</code> or <code>groupedLines</code> then set the corresponding <code>display**</code> value to true. At present, these specifications do not yet have any influence on the display in <code>style</code> <code>image</code>.
+      <td>If the corresponding data field should be displayed in the style <code>lines</code> or <code>groupedLines</code> 
+	      then set the corresponding <code>display**</code> value to true. At present, these specifications do not 
+	      yet have any influence on the display in <code>style</code> <code>image</code>.
 			<br>
 			Use the <code>unit**</code> variables to set which unit should be displayed after the value specification
 			<table width="100%">
