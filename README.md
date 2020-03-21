@@ -357,10 +357,73 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
 				  </td>
 				</tr>
 				<tr>
-				  <td>is the car locked - not used yet, because actually not in MQTT message</td>
+				  <td>is the car locked - only used by Teslamate</td>
 				  <td><code>displayLock</code></td>
 				  <td><code></code></td>
 				  <td><code>""</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>Geofence from TeslaMate</td>
+				  <td><code>displayGeofence</code></td>
+				  <td><code></code></td>
+				  <td><code>""</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>is an Update available - only TeslaMate</td>
+				  <td><code>displayUpdate_available</code></td>
+				  <td><code></code></td>
+				  <td><code>""</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>estimated battery range in km - only TeslaMate</td>
+				  <td><code>displayEst_battery_range_km</code></td>
+				  <td><code></code></td>
+				  <td><code>"km"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>time to full charge in minutes - only TeslaMate</td>
+				  <td><code>displayTime_to_full_charge</code></td>
+				  <td><code></code></td>
+				  <td><code>"min"</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>is there an open window? - only TeslaMate</td>
+				  <td><code>displayWindows_open</code></td>
+				  <td><code></code></td>
+				  <td><code>""</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>is there an open door? - only TeslaMate</td>
+				  <td><code>displayDoors_open</code></td>
+				  <td><code></code></td>
+				  <td><code>""</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>is there someone in the car? - only TeslaMate</td>
+				  <td><code>displayIs_user_present</code></td>
+				  <td><code></code></td>
+				  <td><code>""</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>is the cable plugged in? - only TeslaMate</td>
+				  <td><code>displayPlugged_in</code></td>
+				  <td><code></code></td>
+				  <td><code>""</code>
+				  </td>
+				</tr>
+				<tr>
+				  <td>start time of charging? - only TeslaMate</td>
+				  <td><code>displayScheduled_charging_start_time</code></td>
+				  <td><code></code></td>
+				  <td><code>"Uhr"</code>
 				  </td>
 				</tr>
 			   </tbody>
@@ -370,5 +433,3 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
   </tbody>
 </table>
 
-## Further information
-* xxx
