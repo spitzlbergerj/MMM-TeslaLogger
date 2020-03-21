@@ -33,7 +33,17 @@
 	"BATTERY_HEATER":"battery heater",
 	"IS_PRECONDITIONING":"preconditioning",
 	"SENTRY_MODE":"sentry mode",
-	
+	"LOCK":"Car",
+	"GEOFENCE":"Location",
+	"UPDATE_AVAILABLE":"Update available",
+	"EST_BATTERY_RANGE_KM":"est. Range",
+	"TIME_TO_FULL_CHARGE":"Battery fully charged in",
+	"WINDOWS_OPEN":"Windows",
+	"DOORS_OPEN":"Doors",
+	"IS_USER_PRESENT":"Persons",
+	"PLUGGED_IN":"plugged in",
+	"SCHEDULED_CHARGING_START_TIME":"Scheduled Charge starts at",
+
 	"STATUS":"Message from",
 	"WITH":"with",
 	"MAX":"max.",
@@ -46,6 +56,10 @@
 	"UNKNOWN":"unknown",
 	"ON":"on",
 	"OFF":"off",
+	"PRESENT": "present",
+	"AWAY": "away",
+	"YES": "ja",
+	"NO": "nein",
 	
 	"END":"end"
 }
