@@ -38,31 +38,31 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
 
 ```javascript
 {
-module: 'MMM-TeslaLogger',
-position: 'top_right',
-header: 'Tesla',
-config: {
-mqttServerAddress: '000.000.000.000',
-mqttServerPort: '1883',
-// mqttServerUser: '',
-// mqttServerPassword: '',
-mqttTopics: [
-"Tesla",
-"teslamate/cars/1/+",
-],
-logging: true,
-localeStr: 'de-DE',
-maxAgeSeconds: 36000,
-style: "lines",
+    module: 'MMM-TeslaLogger',
+    position: 'top_right',
+    header: 'Tesla',
+    config: {
+        mqttServerAddress: '000.000.000.000',
+        mqttServerPort: '1883',
+        // mqttServerUser: '',
+        // mqttServerPassword: '',
+        mqttTopics: [
+            "Tesla",
+            "teslamate/cars/1/+",
+        ],
+        logging: true,
+        localeStr: 'de-DE',
+        maxAgeSeconds: 36000,
+        style: "lines",
 
-displayState: true,
-displayOdometer: true,
-displayOutside_temp: true,
-displayBattery_level: true,
-displayCharger_actual_current: true,
-displayInside_temperature: true,
-displaySentry_mode: true,
-}
+        displayState: true,
+        displayOdometer: true,
+        displayOutside_temp: true,
+        displayBattery_level: true,
+        displayCharger_actual_current: true,
+        displayInside_temperature: true,
+        displaySentry_mode: true,
+    }
 },
 ```
 
