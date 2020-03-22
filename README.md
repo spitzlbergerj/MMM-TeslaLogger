@@ -190,7 +190,7 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
                 <td><code>displayState</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td>X</td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>actual speed of the car</td>
@@ -204,252 +204,252 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
                 <td><code>displayPower</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>Odometer</td>
                 <td><code>displayOdometer</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
                 <td>Ideal range of km with actual battery level</td>
                 <td><code>displayIdeal_battery_range_km</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>outside temperature</td>
                 <td><code>displayOutside_temp</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
                 <td>actual level of battery</td>
                 <td><code>displayBattery_level</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
                 <td>actual voltage during charging</td>
                 <td><code>displayCharger_voltage</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>actual phases during charging</td>
                 <td><code>displayCharger_phases</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>actual current during charging</td>
                 <td><code>displayCharger_actual_current</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>energy added since start of charging</td>
                 <td><code>displayCharge_energy_added</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>actual power during charging</td>
                 <td><code>displayCharger_power</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>SW version of the car</td>
                 <td><code>displayCar_version</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
                 <td>time of actual/last trip start</td>
                 <td><code>displayTrip_start</code></td>
                 <td>X</td>
-                <td>X</td>
-                <td></td>
+                <td>-</td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>max speed during actual/last trip</td>
                 <td><code>displayTrip_max_speed</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>max power during actual/last trip</td>
                 <td><code>displayTrip_max_power</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>duration of actual/last trip in seconds</td>
                 <td><code>displayTrip_duration_sec</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
                 <td>spended kwh since start of actual/last trip</td>
                 <td><code>displayTrip_kwh</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
                 <td>average kwh during actual/last trip</td>
                 <td><code>displayTrip_avg_kwh</code></td>
                 <td>X</td>
-                <td>X</td>
-                <td></td>
+                <td>-</td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>distance since start of actual/last trip</td>
                 <td><code>displayTrip_distance</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
-                <td>time of ???</td>
+                <td>timestamp</td>
                 <td><code>displayTs</code></td>
                 <td>X</td>
-                <td>X</td>
-                <td></td>
+                <td>-</td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>actual latitude</td>
                 <td><code>displayLatitude</code></td>
                 <td>X</td>
-                <td>X</td>
+                <td>-</td>
                 <td></td>
             </tr>
             <tr>
                 <td>actual longitude</td>
                 <td><code>displayLongitude</code></td>
                 <td>X</td>
-                <td>X</td>
-                <td></td>
+                <td>-</td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>actual level limit of charging</td>
                 <td><code>displayCharge_limit_soc</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>inside temperature</td>
                 <td><code>displayInside_temperature</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
                 <td>is battery heater active?</td>
                 <td><code>displayBattery_heater</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
                 <td>is preconditioning active?</td>
                 <td><code>displayIs_preconditioning</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
                 <td>is sentry mode active?</td>
                 <td><code>displaySentry_mode</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
                 <td>is the car locked - only used by Teslamate</td>
                 <td><code>displayLock</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
                 <td>Geofence from TeslaMate</td>
                 <td><code>displayGeofence</code></td>
                 <td>X</td>
-                <td>X</td>
-                <td></td>
+                <td>-</td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>is an Update available - only TeslaMate</td>
                 <td><code>displayUpdate_available</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
                 <td>estimated battery range in km - only TeslaMate</td>
                 <td><code>displayEst_battery_range_km</code></td>
                 <td>X</td>
-                <td>X</td>
-                <td></td>
+                <td>-</td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>time to full charge in minutes - only TeslaMate</td>
                 <td><code>displayTime_to_full_charge</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>is there an open window? - only TeslaMate</td>
                 <td><code>displayWindows_open</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>is there an open door? - only TeslaMate</td>
                 <td><code>displayDoors_open</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>-</td>
             </tr>
             <tr>
                 <td>is there someone in the car? - only TeslaMate</td>
                 <td><code>displayIs_user_present</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
                 <td>is the cable plugged in? - only TeslaMate</td>
                 <td><code>displayPlugged_in</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
             </tr>
             <tr>
                 <td>start time of charging? - only TeslaMate</td>
                 <td><code>displayScheduled_charging_start_time</code></td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>-</td>
             </tr>
         </tbody>
 </table>
