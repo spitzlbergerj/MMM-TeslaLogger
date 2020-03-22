@@ -26,9 +26,11 @@ view "lines"
 
 Go to `MagicMirror/modules` and write
 
-git clone https://github.com/spitzlbergerj/MMM-Teslalogger
-cd MMM-Teslalogger
-npm install
+```
+    git clone https://github.com/spitzlbergerj/MMM-Teslalogger
+    cd MMM-Teslalogger
+    npm install
+```
 
 
 
