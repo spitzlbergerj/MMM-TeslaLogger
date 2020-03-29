@@ -27,9 +27,9 @@ module.exports = NodeHelper.create({
         this.log("Epoch", epoch);
         var date = epoch.toISOString();
         this.log("date", date); 
-        this.log("toLocaleTime",epoch.toLocaleTimeString());
+        this.log("toLocaleTime",epoch.toLocaleTimeString(node_helper_config.localeStr));
         var dateStr = date.split('.')[0].split('T')[0]
-        return dateStr.split('-')[2]+'.'+dateStr.split('-')[1] + ' ' + epoch.toLocaleTimeString().split(':')[0]+":"+epoch.toLocaleTimeString().split(':')[1];
+        return dateStr.split('-')[2]+'.'+dateStr.split('-')[1] + ' ' + epoch.toLocaleTimeString(node_helper_config.localeStr).split(':')[0]+":"+epoch.toLocaleTimeString(node_helper_config.localeStr).split(':')[1];
     },
 
 
