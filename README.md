@@ -1,7 +1,7 @@
 # Teslalogger
 
 Module for [MagicMirror](https://github.com/MichMich/MagicMirror/) showing data from the
-[Teslalogger](https://github.com/bassmaster187/TeslaLogger) or from
+[TeslaLogger](https://github.com/bassmaster187/TeslaLogger) or from
 [TeslaMate](https://github.com/adriankumpf/teslamate) or both subscribed to via MQTT.
 
 This module is based on [MMM-MQTT](https://github.com/ottopaulsen/MMM-MQTT) and would not have been possible without the
