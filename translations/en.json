@@ -4,6 +4,7 @@
 	"DRIVING":"driving",
 	"ONLINE":"online",
 	"SLEEPING":"sleeping",
+	"UPDATING":"updating",
 	"UNDEFINED":"offline",
 
 	"SPEED":"Speed",
