@@ -190,7 +190,7 @@ Module.register("MMM-TeslaLogger", {
 			if (payload != null) {
 				var value = payload.value;
 
-				// Verarbeittung TeslaLogger MQTT Telegramme
+				// Processing the data of TeslaLogger MQTT telegrams
 				if (payload.topic === "Tesla") {
 					this.TeslaJSON.Charging = get(JSON.parse(value), "/charging");
 					this.TeslaJSON.Driving = get(JSON.parse(value), "/driving");
@@ -225,6 +225,7 @@ Module.register("MMM-TeslaLogger", {
 					this.TeslaJSON.Sentry_mode = get(JSON.parse(value), "/sentry_mode");
 				}
 
+				// Processing the data of teslamate MQTT telegrams
 				if (payload.topic.substr(0, 9) === "teslamate") {
 					if (payload.topic.substr(17) === "locked") {
 						if (value === "true") {
@@ -256,10 +257,6 @@ Module.register("MMM-TeslaLogger", {
 
 					if (payload.topic.substr(17) === "speed") {
 						this.TeslaJSON.Speed = value;
-					}
-
-					if (payload.topic.substr(17) === "charger_power") {
-						this.TeslaJSON.Power = value;
 					}
 
 					if (payload.topic.substr(17) === "odometer") {
