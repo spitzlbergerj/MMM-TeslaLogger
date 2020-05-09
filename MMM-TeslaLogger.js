@@ -1376,18 +1376,19 @@ Module.register("MMM-TeslaLogger", {
 
 			value = document.createElement("td");
 
+			// falls driving == true ist auch immer online == True
 			if (self.TeslaJSON.Charging) {
 				value.innerHTML = self.translate("CHARGING");
-			} else if (self.TeslaJSON.Online) {
-				value.innerHTML = self.translate("ONLINE");
-			} else if (self.TeslaJSON.Sleeping) {
-				value.innerHTML = self.translate("SLEEPING");
 			} else if (self.TeslaJSON.Driving) {
 				content = self.translate("DRIVING")
 				if (self.config.displaySpeed) {
 					content = content + " " + self.translate("WITH") + " " + self.TeslaJSON.Speed + " " + self.config.unitSpeed;
 				}
 				value.innerHTML = content;
+			} else if (self.TeslaJSON.Online) {
+				value.innerHTML = self.translate("ONLINE");
+			} else if (self.TeslaJSON.Sleeping) {
+				value.innerHTML = self.translate("SLEEPING");
 			} else {
 				value.innerHTML = self.translate("UNDEFINED");
 			}
