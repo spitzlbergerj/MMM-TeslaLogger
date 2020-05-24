@@ -1741,6 +1741,7 @@ Module.register("MMM-TeslaLogger", {
 		table = document.createElement("table");
 		table.className = "small";
 
+		var versionStr;
 		var row;
 		var symbolCell;
 		var symbol;
@@ -1781,11 +1782,11 @@ Module.register("MMM-TeslaLogger", {
 		valueRight.className = "align-right TeslaLogger-valueRight " + (tooOld ? "dimmed" : "bright");
 
 		if (self.TeslaJSON.Car_version) {
-			content = self.TeslaJSON.Car_version.substr(0, self.TeslaJSON.Car_version.indexOf(" "));
+			versionStr = self.TeslaJSON.Car_version;
 		} else {
-			content = self.translate("UNKNOWN");
+			versionStr = self.translate("UNKNOWN");
 		}
-		content = self.translate("VERSION") + " " + content;
+		content = self.translate("VERSION") + " " + versionStr.substr(0, versionStr.indexOf(" "));
 
 		contentDiv = document.createElement("div");
 		contentDiv.style.display = "inline";
