@@ -168,6 +168,12 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
                     If the corresponding data field should be displayed in the style <code>lines</code> or <code>groupedLines</code> then set the corresponding <code>display**</code> value to true. At present, these specifications do not yet have any influence on the display in <code>style</code> <code>image</code>. <br>Use the <code>unit**</code> variables to set which unit should be displayed after the value specification<br>Details in tables below
                 </td>
             </tr>
+            <tr>
+                <td><code>calcToMiles</code></td>
+                <td>With the parameter calcToMiles the value of the odometer can be converted into miles. Consequently, other values from km to miles would have to be converted as well. Will be done in a next version.
+                    <br><b>Default value:</b> <code>"false"</code>
+                </td>
+            </tr>
         </tbody>
 </table>
 
