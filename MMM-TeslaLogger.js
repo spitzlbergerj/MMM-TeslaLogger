@@ -92,6 +92,8 @@ Module.register("MMM-TeslaLogger", {
 		unitIs_user_present: "",
 		unitPlugged_in: "",
 		unitScheduled_charging_start_time: "Uhr",
+
+		calcToMiles: false,
 	},
 
 	// TeslaLogger and TeslaMate post MQTT payload with these JSON elements
@@ -392,6 +394,14 @@ Module.register("MMM-TeslaLogger", {
 					}
 				}
 
+				if (this.config.calcToMiles) {
+					this.TeslaJSON.OdometerCalc = this.TeslaJSON.Odometer / 1.609;
+				}
+				else {
+					this.TeslaJSON.OdometerCalc = this.TeslaJSON.Odometer;
+					
+				}
+
 				this.TeslaJSON.TimeOfStatus = payload.time;
 				this.TeslaJSON.TimeOfStatusStr = payload.timeStr;
 
@@ -542,7 +552,7 @@ Module.register("MMM-TeslaLogger", {
 			label.className = "align-left TeslaLogger-label";
 
 			value = document.createElement("td");
-			value.innerHTML = Math.round(self.TeslaJSON.Odometer);
+			value.innerHTML = Math.round(self.TeslaJSON.OdometerCalc);
 			value.className = "align-right TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
 
 			suffix = document.createElement("td");
@@ -1686,7 +1696,7 @@ Module.register("MMM-TeslaLogger", {
 
 			value = document.createElement("td");
 
-			content = Math.round(self.TeslaJSON.Odometer) + " " + self.config.unitOdometer;
+			content = Math.round(self.TeslaJSON.OdometerCalc) + " " + self.config.unitOdometer;
 
 			if (self.config.displayCar_version) {
 				var versionStr;
@@ -1764,7 +1774,7 @@ Module.register("MMM-TeslaLogger", {
 		valueLeft = document.createElement("td");
 		valueLeft.className = "align-left TeslaLogger-valueLeft " + (tooOld ? "dimmed" : "bright");
 
-		content = Math.round(self.TeslaJSON.Odometer) + " " + self.config.unitOdometer;
+		content = Math.round(self.TeslaJSON.OdometerCalc) + " " + self.config.unitOdometer;
 		valueLeft.innerHTML = content;
 
 		valueRight = document.createElement("td");
