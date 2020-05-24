@@ -173,7 +173,7 @@ Module.register("MMM-TeslaLogger", {
 	start: function () {
 		console.log(this.name + " started.");
 		console.log(this.name + ": Setting up connection to MQTT Broker " + this.config.mqttServerAddress + " at port " + this.config.mqttServerPort);
-		console.log(this.name + ": TeslaJSON = " + this.TeslaJSON.car_version);
+		console.log(this.name + ": TeslaJSON = " + this.TeslaJSON.Car_version);
 
 		this.TeslaJSON.TimeOfStatus = Date.now();
 		this.TeslaJSON.TimeOfStatusStr = this.formatDateTime(this.TeslaJSON.TimeOfStatus / 1000);;
