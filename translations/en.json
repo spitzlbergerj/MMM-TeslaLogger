@@ -3,6 +3,7 @@
 	"CHARGING":"charging",
 	"DRIVING":"driving",
 	"ONLINE":"online",
+	"FALLINGASLEEP":"fall asleep",
 	"SLEEPING":"sleeping",
 	"UNDEFINED":"offline",
 
