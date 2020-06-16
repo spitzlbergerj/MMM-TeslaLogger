@@ -103,6 +103,7 @@ Module.register("MMM-TeslaLogger", {
 		Driving: false,
 		Online: false,
 		Sleeping: false,
+		FallingAsleep: false,
 		Speed: 0,
 		Power: 0,
 		Odometer: 0,
@@ -198,6 +199,7 @@ Module.register("MMM-TeslaLogger", {
 					this.TeslaJSON.Driving = get(JSON.parse(value), "/driving");
 					this.TeslaJSON.Online = get(JSON.parse(value), "/online");
 					this.TeslaJSON.Sleeping = get(JSON.parse(value), "/sleeping");
+					this.TeslaJSON.FallingAsleep = get(JSON.parse(value), "/falling_asleep");
 					this.TeslaJSON.Speed = get(JSON.parse(value), "/speed");
 					this.TeslaJSON.Power = get(JSON.parse(value), "/power");
 					this.TeslaJSON.Odometer = get(JSON.parse(value), "/odometer");
@@ -242,6 +244,7 @@ Module.register("MMM-TeslaLogger", {
 						this.TeslaJSON.Driving = false;
 						this.TeslaJSON.Online = false;
 						this.TeslaJSON.Sleeping = false;
+						this.TeslaJSON.FallingAsleep = false;
 
 						if (value === "online") {
 							this.TeslaJSON.Online = true;
@@ -480,6 +483,8 @@ Module.register("MMM-TeslaLogger", {
 				value.innerHTML = self.translate("CHARGING");
 			} else if (self.TeslaJSON.Driving) {
 				value.innerHTML = self.translate("DRIVING");
+			} else if (self.TeslaJSON.FallingAsleep) {
+				value.innerHTML = self.translate("FALLINGASLEEP");
 			} else if (self.TeslaJSON.Online) {
 				value.innerHTML = self.translate("ONLINE");
 			} else if (self.TeslaJSON.Sleeping) {
@@ -1395,6 +1400,8 @@ Module.register("MMM-TeslaLogger", {
 					content = content + " " + self.translate("WITH") + " " + self.TeslaJSON.Speed + " " + self.config.unitSpeed;
 				}
 				value.innerHTML = content;
+			} else if (self.TeslaJSON.FallingAsleep) {
+				value.innerHTML = self.translate("FALLINGASLEEP");
 			} else if (self.TeslaJSON.Online) {
 				value.innerHTML = self.translate("ONLINE");
 			} else if (self.TeslaJSON.Sleeping) {
