@@ -7,6 +7,18 @@ Module for [MagicMirror](https://github.com/MichMich/MagicMirror/) showing data 
 This module is based on [MMM-MQTT](https://github.com/ottopaulsen/MMM-MQTT) and would not have been possible without the
 work of [Otto Paulsen](https://github.com/ottopaulsen). Thanks a lot for your work!
 
+## actual issue
+The MQTT topic from TeslaLogger has to be "Tesla". Otherwise this module will not show values.  
+The MQTT topic within TeslaLogger is configured within the file MQTTClient.exe.config.  
+There the config of the Topic string should look like this
+```
+            <setting name="Topic" serializeAs="String">
+                <value>Tesla</value>
+            </setting>
+```
+The documentation to change this could be found [here](http://teslalogger.de/Teslalogger.pdf) - page 3 and 4  
+I hope to fix the [issue](https://github.com/spitzlbergerj/MMM-TeslaLogger/issues/15) in general soon
+
 ## Screenshots
 
 view "image" with your Tesla image
