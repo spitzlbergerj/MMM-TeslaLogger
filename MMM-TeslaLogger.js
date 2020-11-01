@@ -194,7 +194,7 @@ Module.register("MMM-TeslaLogger", {
 				var value = payload.value;
 
 				// Processing the data of TeslaLogger MQTT telegrams
-				if (payload.topic === "Tesla") {
+				if (payload.topic === this.config.mqttTopics[0]) {
 					this.TeslaJSON.Charging = get(JSON.parse(value), "/charging");
 					this.TeslaJSON.Driving = get(JSON.parse(value), "/driving");
 					this.TeslaJSON.Online = get(JSON.parse(value), "/online");
