@@ -7,18 +7,6 @@ Module for [MagicMirror](https://github.com/MichMich/MagicMirror/) showing data 
 This module is based on [MMM-MQTT](https://github.com/ottopaulsen/MMM-MQTT) and would not have been possible without the
 work of [Otto Paulsen](https://github.com/ottopaulsen). Thanks a lot for your work!
 
-## actual issue
-The MQTT topic from TeslaLogger has to be "Tesla". Otherwise this module will not show values.  
-The MQTT topic within TeslaLogger is configured within the file MQTTClient.exe.config.  
-There the config of the Topic string should look like this
-```
-            <setting name="Topic" serializeAs="String">
-                <value>Tesla</value>
-            </setting>
-```
-The documentation to change this could be found [here](http://teslalogger.de/Teslalogger.pdf) - page 3 and 4  
-I hope to fix the [issue](https://github.com/spitzlbergerj/MMM-TeslaLogger/issues/15) in general soon
-
 ## Screenshots
 
 view "image" with your Tesla image
@@ -112,8 +100,8 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
             </tr>
             <tr>
                 <td><code>mqttTopics</code></td>
-                <td>Topics for the MQTT Broker (optional)
-                    <br><b>Possible values:</b> <code>["Tesla",]</code> - <code>["teslamate/cars/1/+",]</code> -
+                <td>Topics for the MQTT Broker. The first topic has to be the TeslaLogger MQTT topic. The second topic may be the topic of teslamate.
+                    <br><b>Possible values:</b> <code>["Tesla",]</code> - <code>["xxx", "teslamate/cars/1/+",]</code> -
                     <code>["Tesla","teslamate/cars/1/+",]</code>
                     <br><b>Default value:</b> <code>["Tesla","teslamate/cars/1/+",]</code> </td>
             </tr>
@@ -622,3 +610,14 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
             </tr>
         </tbody>
 </table>
+
+## TeslaLogger MQTT Topic
+The TeslaLogger MQTT Topic is set in the file ```MQTTClient.exe.config``` on the computer running TeslaLogger. See the corresponding [documentation](http://teslalogger.de/Teslalogger.pdf) on page 3 and 4.
+
+Example
+```
+            <setting name="Topic" serializeAs="String">
+                <value>Tesla</value>
+            </setting>
+```
+
