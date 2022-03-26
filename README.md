@@ -169,8 +169,8 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
                 </td>
             </tr>
             <tr>
-                <td><code>calcToMiles</code></td>
-                <td>With the parameter calcToMiles the value of the odometer can be converted into miles. Consequently, other values from km to miles would have to be converted as well. Will be done in a next version.
+                <td><code>calcToImperials</code></td>
+                <td>With the parameter calcToImperial the values of  Odometer, Outside_temp, Inside_temperature, Trip_distance, Est_battery_range_km, Ideal_battery_range_km can be converted into imperial values. 
                     <br><b>Default value:</b> <code>"false"</code>
                 </td>
             </tr>
