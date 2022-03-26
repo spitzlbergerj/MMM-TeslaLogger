@@ -93,7 +93,7 @@ Module.register("MMM-TeslaLogger", {
 		unitPlugged_in: "",
 		unitScheduled_charging_start_time: "Uhr",
 
-		calcToMiles: false,
+		calcToImperial: false,
 	},
 
 	// TeslaLogger and TeslaMate post MQTT payload with these JSON elements
@@ -397,12 +397,21 @@ Module.register("MMM-TeslaLogger", {
 					}
 				}
 
-				if (this.config.calcToMiles) {
-					this.TeslaJSON.OdometerCalc = this.TeslaJSON.Odometer / 1.609;
+				if (this.config.calcToImperial) {
+					this.TeslaJSON.Odometer_Calc = this.TeslaJSON.Odometer / 1.609344;
+					this.TeslaJSON.Outside_temp_Calc = this.TeslaJSON.Outside_temp * 1.8 + 32;
+					this.TeslaJSON.Inside_temperature_Calc = this.TeslaJSON.Inside_temperature * 1.8 + 32;
+					this.TeslaJSON.Trip_distance_Calc = this.TeslaJSON.Trip_distance / 1.609344;
+					this.TeslaJSON.Est_battery_range_km_Calc = this.TeslaJSON.Est_battery_range_km / 1.609344;
+					this.TeslaJSON.Ideal_battery_range_km_Calc = this.TeslaJSON.Ideal_battery_range_km / 1.609344;
 				}
 				else {
-					this.TeslaJSON.OdometerCalc = this.TeslaJSON.Odometer;
-					
+					this.TeslaJSON.Odometer_Calc = this.TeslaJSON.Odometer;
+					this.TeslaJSON.Outside_temp_Calc = this.TeslaJSON.Outside_temp;
+					this.TeslaJSON.Inside_temperature_Calc = this.TeslaJSON.Inside_temperature;
+					this.TeslaJSON.Trip_distance_Calc = this.TeslaJSON.Trip_distance;
+					this.TeslaJSON.Est_battery_range_km_Calc = this.TeslaJSON.Est_battery_range_km;
+					this.TeslaJSON.Ideal_battery_range_km_Calc = this.TeslaJSON.Ideal_battery_range_km;
 				}
 
 				this.TeslaJSON.TimeOfStatus = payload.time;
@@ -557,7 +566,7 @@ Module.register("MMM-TeslaLogger", {
 			label.className = "align-left TeslaLogger-label";
 
 			value = document.createElement("td");
-			value.innerHTML = Math.round(self.TeslaJSON.OdometerCalc);
+			value.innerHTML = Math.round(self.TeslaJSON.Odometer_Calc);
 			value.className = "align-right TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
 
 			suffix = document.createElement("td");
@@ -667,7 +676,7 @@ Module.register("MMM-TeslaLogger", {
 			label.className = "align-left TeslaLogger-label";
 
 			value = document.createElement("td");
-			value.innerHTML = self.TeslaJSON.Outside_temp;
+			value.innerHTML = self.TeslaJSON.Outside_temp_Calc;
 			value.className = "align-right TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
 
 			suffix = document.createElement("td");
@@ -689,7 +698,7 @@ Module.register("MMM-TeslaLogger", {
 			label.className = "align-left TeslaLogger-label";
 
 			value = document.createElement("td");
-			value.innerHTML = self.TeslaJSON.Inside_temperature;
+			value.innerHTML = self.TeslaJSON.Inside_temperature_Calc;
 			value.className = "align-right TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
 
 			suffix = document.createElement("td");
@@ -785,7 +794,7 @@ Module.register("MMM-TeslaLogger", {
 			label.className = "align-left TeslaLogger-label";
 
 			value = document.createElement("td");
-			value.innerHTML = Math.round(self.TeslaJSON.Ideal_battery_range_km);
+			value.innerHTML = Math.round(self.TeslaJSON.Ideal_battery_range_km_Calc);
 			value.className = "align-right TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
 
 			suffix = document.createElement("td");
@@ -807,7 +816,7 @@ Module.register("MMM-TeslaLogger", {
 			label.className = "align-left TeslaLogger-label";
 
 			value = document.createElement("td");
-			value.innerHTML = self.TeslaJSON.Est_battery_range_km;
+			value.innerHTML = self.TeslaJSON.Est_battery_range_km_Calc;
 			value.className = "align-right TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
 
 			suffix = document.createElement("td");
@@ -1141,7 +1150,7 @@ Module.register("MMM-TeslaLogger", {
 			label.className = "align-left TeslaLogger-label";
 
 			value = document.createElement("td");
-			value.innerHTML = Math.round(self.TeslaJSON.Trip_distance);
+			value.innerHTML = Math.round(self.TeslaJSON.Trip_distance_Calc);
 			value.className = "align-right TeslaLogger-value " + (tooOld ? "dimmed" : "bright");
 
 			suffix = document.createElement("td");
@@ -1439,7 +1448,7 @@ Module.register("MMM-TeslaLogger", {
 			content = self.TeslaJSON.Battery_level + " " + self.config.unitBattery_level;
 
 			if (self.config.displayIdeal_battery_range_km) {
-				content = content + ", " + Math.round(self.TeslaJSON.Ideal_battery_range_km) + " " + self.config.unitIdeal_battery_range_km;
+				content = content + ", " + Math.round(self.TeslaJSON.Ideal_battery_range_km_Calc) + " " + self.config.unitIdeal_battery_range_km;
 			}
 
 			if (self.config.displayCharge_limit_soc) {
@@ -1610,7 +1619,7 @@ Module.register("MMM-TeslaLogger", {
 
 			contentDiv = document.createElement("div");
 			contentDiv.style.display = "inline";
-			content = self.TeslaJSON.Outside_temp + " " + self.config.unitOutside_temp + ", " + self.TeslaJSON.Inside_temperature + " " + self.config.unitInside_temperature;
+			content = self.TeslaJSON.Outside_temp_Calc + " " + self.config.unitOutside_temp + ", " + self.TeslaJSON.Inside_temperature_Calc + " " + self.config.unitInside_temperature;
 
 			contentDiv.innerHTML = content;
 			value.appendChild(contentDiv);
@@ -1659,7 +1668,7 @@ Module.register("MMM-TeslaLogger", {
 
 			value = document.createElement("td");
 
-			content = Math.round(self.TeslaJSON.Trip_distance) + " " + self.config.unitTrip_distance;
+			content = Math.round(self.TeslaJSON.Trip_distance_Calc) + " " + self.config.unitTrip_distance;
 
 			if (self.config.displayTrip_duration_sec) {
 				content = content + ", " + Math.round(self.TeslaJSON.Trip_duration_sec / 60) + " " + self.translate("MINUTES");
@@ -1703,7 +1712,7 @@ Module.register("MMM-TeslaLogger", {
 
 			value = document.createElement("td");
 
-			content = Math.round(self.TeslaJSON.OdometerCalc) + " " + self.config.unitOdometer;
+			content = Math.round(self.TeslaJSON.Odometer_Calc) + " " + self.config.unitOdometer;
 
 			if (self.config.displayCar_version) {
 				var versionStr;
@@ -1782,7 +1791,7 @@ Module.register("MMM-TeslaLogger", {
 		valueLeft = document.createElement("td");
 		valueLeft.className = "align-left TeslaLogger-valueLeft " + (tooOld ? "dimmed" : "bright");
 
-		content = Math.round(self.TeslaJSON.OdometerCalc) + " " + self.config.unitOdometer;
+		content = Math.round(self.TeslaJSON.Odometer_Calc) + " " + self.config.unitOdometer;
 		valueLeft.innerHTML = content;
 
 		valueRight = document.createElement("td");
@@ -1907,7 +1916,7 @@ Module.register("MMM-TeslaLogger", {
 
 		valueLeft = document.createElement("td");
 		valueLeft.className = "align-left TeslaLogger-valueLeft " + (tooOld ? "dimmed" : "bright");
-		content = self.TeslaJSON.Inside_temperature + " " + self.config.unitInside_temperature;
+		content = self.TeslaJSON.Inside_temperature_Calc + " " + self.config.unitInside_temperature;
 		valueLeft.innerHTML = content;
 
 		valueRight = document.createElement("td");
@@ -1939,7 +1948,7 @@ Module.register("MMM-TeslaLogger", {
 
 		valueLeft = document.createElement("td");
 		valueLeft.className = "align-left TeslaLogger-valueLeft " + (tooOld ? "dimmed" : "bright");
-		content = self.TeslaJSON.Outside_temp + " " + self.config.unitOutside_temp;
+		content = self.TeslaJSON.Outside_temp_Calc + " " + self.config.unitOutside_temp;
 		valueLeft.innerHTML = content;
 
 		valueRight = document.createElement("td");
@@ -1971,7 +1980,7 @@ Module.register("MMM-TeslaLogger", {
 
 		valueLeft = document.createElement("td");
 		valueLeft.className = "align-left TeslaLogger-valueLeft " + (tooOld ? "dimmed" : "bright");
-		content = Math.round(self.TeslaJSON.Trip_distance) + " " + self.config.unitTrip_distance;
+		content = Math.round(self.TeslaJSON.Trip_distance_Calc) + " " + self.config.unitTrip_distance;
 		// content = content + ", " + Math.round(self.TeslaJSON.Trip_duration_sec / 60) + " " + self.translate("MINUTES");
 		// content = content + ", " + self.translate("MAX") + " " + self.TeslaJSON.Trip_max_speed + " " + self.config.unitTrip_max_speed;
 		content = content + ", " + Math.round(self.TeslaJSON.Trip_kwh) + " " + self.config.unitTrip_kwh;
