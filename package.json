@@ -11,7 +11,7 @@
   "dependencies": {
     "extend": "^3.0.2",
     "jsonpointer": "^5.0.0",
-    "mocha": "^6.2.1",
+    "mocha": "^10.2.0",
     "mqtt": "^4.3.7",
     "mqtt-packet": "^6.2.1"
   }
